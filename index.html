@@ -8,8 +8,11 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="GK Dairy">
 <meta name="theme-color" content="#0A1628">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="version" content="v3-2025-11">
 <title>GK Dairy</title>
-<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='40' fill='%230A1628'/><text y='130' x='96' text-anchor='middle' font-size='110'>🐄</text></svg>">
 <link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
@@ -303,23 +306,23 @@ tr:hover td{background:rgba(212,168,67,.04)}
   </div>
   <div class="login-card">
     <div class="form-group">
-      <label>Login Type</label>
-      <div class="select-wrap">
-        <select id="lt" onchange="updateLoginHint()">
-          <option value="dairy">🏭 Main Dairy</option>
-        </select>
+      <label>Username / பயனர் பெயர்</label>
+      <input type="text" id="uname" placeholder="admin / cc1 / cc2..." autocomplete="username">
+    </div>
+    <div class="form-group">
+      <label>Password / கடவுச்சொல்</label>
+      <input type="password" id="upwd" placeholder="Password" autocomplete="current-password">
+    </div>
+    <div class="login-hint" id="login-hint">Username மற்றும் Password உள்ளிடுங்கள்</div>
+    <button class="btn-gold btn-full" onclick="doLogin()" style="margin-top:4px">🔐 LOGIN →</button>
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);text-align:center">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:8px">Default credentials:</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center">
+        <span style="background:var(--navy2);border:1px solid var(--border);border-radius:8px;padding:4px 10px;font-size:11px;color:var(--text2)">🏭 admin / dairy123</span>
+        <span style="background:var(--navy2);border:1px solid var(--border);border-radius:8px;padding:4px 10px;font-size:11px;color:var(--text2)">🏪 cc1, cc2... / cc123</span>
       </div>
+      <div style="font-size:10px;color:var(--text3);margin-top:8px">Masters → 🔑 Passwords-ல் change செய்யலாம்</div>
     </div>
-    <div class="form-group">
-      <label>Username</label>
-      <input type="text" id="uname" placeholder="பயனர் பெயர்" autocomplete="username">
-    </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" id="upwd" placeholder="கடவுச்சொல்" autocomplete="current-password">
-    </div>
-    <div class="login-hint" id="login-hint">Main Dairy: Vendors, CC allocation, reports & balance</div>
-    <button class="btn-gold btn-full" onclick="doLogin()" style="margin-top:4px">LOGIN →</button>
   </div>
 </div>
 
@@ -329,7 +332,16 @@ tr:hover td{background:rgba(212,168,67,.04)}
     <h2>⚙️ Settings</h2>
     <span class="sp-close" onclick="closeSettings()">✕</span>
   </div>
-  <div class="sp-item" onclick="reconfigureSheets()">
+  <div style="margin-bottom:16px">
+  <div style="font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px">🎨 Theme</div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap">
+    <button class="theme-btn" data-theme="navy"   onclick="applyTheme('navy')"   style="flex:1;min-width:60px;padding:8px 4px;background:var(--surface2);border:2px solid var(--border);border-radius:10px;cursor:pointer;font-family:inherit;text-align:center"><div style="font-size:18px">🌊</div><div style="font-size:10px;color:var(--text);margin-top:2px">Navy</div></button>
+    <button class="theme-btn" data-theme="forest" onclick="applyTheme('forest')" style="flex:1;min-width:60px;padding:8px 4px;background:var(--surface2);border:2px solid var(--border);border-radius:10px;cursor:pointer;font-family:inherit;text-align:center"><div style="font-size:18px">🌿</div><div style="font-size:10px;color:var(--text);margin-top:2px">Forest</div></button>
+    <button class="theme-btn" data-theme="sunset" onclick="applyTheme('sunset')" style="flex:1;min-width:60px;padding:8px 4px;background:var(--surface2);border:2px solid var(--border);border-radius:10px;cursor:pointer;font-family:inherit;text-align:center"><div style="font-size:18px">🌅</div><div style="font-size:10px;color:var(--text);margin-top:2px">Sunset</div></button>
+    <button class="theme-btn" data-theme="purple" onclick="applyTheme('purple')" style="flex:1;min-width:60px;padding:8px 4px;background:var(--surface2);border:2px solid var(--border);border-radius:10px;cursor:pointer;font-family:inherit;text-align:center"><div style="font-size:18px">👑</div><div style="font-size:10px;color:var(--text);margin-top:2px">Purple</div></button>
+  </div>
+</div>
+<div class="sp-item" onclick="reconfigureSheets()">
     <span class="sp-icon">📊</span>
     <div class="sp-text"><div class="sp-lbl">Google Sheets</div><div class="sp-sub">Reconnect / Change URL</div></div>
     <span class="sp-arrow">›</span>
@@ -367,215 +379,264 @@ tr:hover td{background:rgba(212,168,67,.04)}
 
 
 
-<script>// ==================== GOOGLE SHEETS DB LAYER ====================
-// All data reads/writes go to Google Sheets via Apps Script Web App URL
+<script>// ==================== GK DAIRY — DATA LAYER ====================
+// localStorage = primary storage (always works, offline/online)
+// Google Sheets = optional cloud sync (when URL configured)
 
-var SCRIPT_URL = ''; // உங்கள் Web App URL இங்கே வரும்
-
-// In-memory cache — loaded once, updated on each write
-var _cache = {
-  Vendors:       [],
-  Purchases:     [],
-  CC_Allotments: [],
-  CC_Receipts:   [],
-  CC_Issues:     [],
-  Societies:     [],
-  Vehicles:      [],
-  Vehicle_Logs:  [],
-  Feed_Types:    [],
-  Drivers:       [],
-  CC_Centers:    [],
-  Settings:      {},
-};
-
+var SCRIPT_URL = '';
 var SHEETS_READY = false;
 
-// ---- HTTP helpers ----
-function sheetsGet(action, params) {
-  params = params || {};
-  params.action = action;
-  var qs = Object.keys(params).map(function(k){ return k+'='+encodeURIComponent(params[k]); }).join('&');
-  return fetch(SCRIPT_URL + '?' + qs).then(function(r){ return r.json(); });
+// ---- localStorage helpers ----
+function lsGet(key) {
+  try { var v = localStorage.getItem('gkd_' + key); return v ? JSON.parse(v) : null; } catch(e) { return null; }
+}
+function lsSet(key, val) {
+  try { localStorage.setItem('gkd_' + key, JSON.stringify(val)); } catch(e) {}
 }
 
+// ---- Sheets POST (fire-and-forget, non-blocking) ----
 function sheetsPost(action, data) {
+  if (!SCRIPT_URL) return Promise.resolve({ok:true});
   data.action = action;
   return fetch(SCRIPT_URL, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(data),
     mode: 'cors',
-  }).then(function(r){ return r.json(); });
+  }).then(function(r) { return r.json(); }).catch(function() { return {ok:false}; });
 }
 
-// ---- Load all data at startup ----
+function sheetsGet(action, params) {
+  if (!SCRIPT_URL) return Promise.resolve({ok:false});
+  params = params || {};
+  params.action = action;
+  var qs = Object.keys(params).map(function(k){ return k+'='+encodeURIComponent(params[k]); }).join('&');
+  return fetch(SCRIPT_URL + '?' + qs)
+    .then(function(r){ return r.json(); })
+    .catch(function(){ return {ok:false}; });
+}
+
+// ---- Sheets init: load from Sheets into localStorage ----
 function sheetsInit(onReady, onError) {
   if (!SCRIPT_URL) { if(onError) onError('No URL'); return; }
   sheetsGet('getAll').then(function(res) {
-    if (!res.ok) throw new Error(res.error || 'Load failed');
-    var d = res.data;
-    _cache.Vendors       = d.Vendors       || [];
-    _cache.Purchases     = d.Purchases     || [];
-    _cache.CC_Allotments = d.CC_Allotments || [];
-    _cache.CC_Receipts   = d.CC_Receipts   || [];
-    _cache.CC_Issues     = d.CC_Issues     || [];
-    _cache.Societies     = d.Societies     || [];
-    _cache.Vehicles      = d.Vehicles      || [];
-    _cache.Vehicle_Logs  = d.Vehicle_Logs  || [];
-    _cache.Feed_Types    = d.Feed_Types    || [];
-    _cache.Drivers       = d.Drivers       || [];
-    _cache.CC_Centers    = d.CC_Centers    || [];
-    _cache.Settings      = d.Settings      || {};
+    if (!res.ok) { if(onError) onError(res.error||'Load failed'); return; }
+    var d = res.data || {};
+    // Write Sheets data to localStorage (Sheets is source of truth on first load)
+    var sheetToLS = {
+      'Vendors':'vendors','Purchases':'purchases','CC_Allotments':'cc_allotments',
+      'Societies':'societies','Vehicles':'vehicles','Feed_Types':'feed_types',
+      'Drivers':'drivers','CC_Centers':'cc_centers',
+    };
+    Object.keys(sheetToLS).forEach(function(sheet) {
+      var lsKey = sheetToLS[sheet];
+      if (d[sheet] && Array.isArray(d[sheet])) lsSet(lsKey, d[sheet]);
+    });
+    // Settings
+    if (d.Settings) {
+      var s = d.Settings;
+      if (s.dairy_balance) lsSet('dairy_balance', s.dairy_balance);
+      if (s.lowStock || s.warnStock) {
+        lsSet('alert_settings', {
+          lowStock: parseFloat(s.lowStock)||15,
+          warnStock: parseFloat(s.warnStock)||25,
+          phone: s.alert_phone||'', via: s.alert_via||'SMS'
+        });
+      }
+    }
     SHEETS_READY = true;
     if (onReady) onReady();
   }).catch(function(e) {
-    if (onError) onError(e.message || e);
+    if (onError) onError(e.message||'Error');
   });
 }
 
-// ---- Helper: parse numbers from sheet strings ----
-function num(v) { return parseFloat(v) || 0; }
+// ==================== DB OBJECT ====================
+// All operations: localStorage first, then fire-and-forget to Sheets
 
-// ==================== DB OBJECT (Sheets-backed) ====================
 var DB = {
 
   // --- Vendors ---
-  getVendors: function() { return _cache.Vendors; },
+  getVendors: function() { return lsGet('vendors') || []; },
   addVendor: function(v) {
-    v.id = 'v'+Date.now();
-    _cache.Vendors.push(v);
-    sheetsPost('addVendor', {data: v});
+    v.id = 'v' + Date.now();
+    var list = this.getVendors(); list.push(v); lsSet('vendors', list);
+    sheetsPost('addVendor', {data:v});
     return v;
+  },
+  updateVendor: function(id, data) {
+    var list = this.getVendors(), i = list.findIndex(function(x){return x.id===id;});
+    if(i>=0){ list[i]=Object.assign(list[i],data); lsSet('vendors',list); sheetsPost('updateVendor',{id:id,data:data}); }
+  },
+  deleteVendor: function(id) {
+    var list = this.getVendors().filter(function(x){return x.id!==id;});
+    lsSet('vendors',list); sheetsPost('deleteVendor',{id:id});
   },
 
   // --- Purchases ---
   getPurchases: function() {
-    return _cache.Purchases.map(function(p){
-      return Object.assign({}, p, {qty:num(p.qty), rate:num(p.rate), total:num(p.total)});
+    return (lsGet('purchases')||[]).map(function(p){
+      return Object.assign({},p,{qty:parseFloat(p.qty)||0,rate:parseFloat(p.rate)||0,total:parseFloat(p.total)||0});
     });
   },
   addPurchase: function(p) {
-    p.id = 'p'+Date.now();
-    _cache.Purchases.unshift(p);
-    var bal = num(_cache.Settings['dairy_balance'] || 0);
-    _cache.Settings['dairy_balance'] = String(bal - num(p.total));
-    sheetsPost('addPurchase', {data: p});
+    p.id = 'p' + Date.now();
+    var list = lsGet('purchases')||[]; list.unshift(p); lsSet('purchases',list);
+    var bal = this.getDairyBalance(); this.setDairyBalance(bal - (parseFloat(p.total)||0));
+    sheetsPost('addPurchase',{data:p});
     return p;
+  },
+  deletePurchase: function(id) {
+    var list = (lsGet('purchases')||[]).filter(function(x){return x.id!==id;});
+    lsSet('purchases',list); sheetsPost('deletePurchase',{id:id});
   },
 
   // --- CC Allotments ---
   getAllotments: function() {
-    return _cache.CC_Allotments.map(function(a){
-      return Object.assign({}, a, {qty:num(a.qty), rate:num(a.rate), total:num(a.total)});
+    return (lsGet('cc_allotments')||[]).map(function(a){
+      return Object.assign({},a,{qty:parseFloat(a.qty)||0,rate:parseFloat(a.rate)||0,total:parseFloat(a.total)||0});
     });
   },
   addAllotment: function(a) {
-    a.id = 'a'+Date.now();
-    _cache.CC_Allotments.unshift(a);
-    sheetsPost('addAllotment', {data: a});
+    a.id = 'a' + Date.now();
+    var list = lsGet('cc_allotments')||[]; list.unshift(a); lsSet('cc_allotments',list);
+    sheetsPost('addAllotment',{data:a});
     return a;
   },
+  deleteAllotment: function(id) {
+    var list = (lsGet('cc_allotments')||[]).filter(function(x){return x.id!==id;});
+    lsSet('cc_allotments',list); sheetsPost('deleteAllotment',{id:id});
+  },
   getAllotmentsByCC: function(cc) {
-    return this.getAllotments().filter(function(a){ return a.cc === cc; });
+    return this.getAllotments().filter(function(a){return a.cc===cc;});
   },
 
   // --- CC Receipts ---
   getCCReceipts: function(cc) {
-    return _cache.CC_Receipts.filter(function(r){ return r.cc === cc; }).map(function(r){
-      return Object.assign({}, r, {received:num(r.received), damage:num(r.damage), net:num(r.net), rate:num(r.rate)});
+    var d = lsGet('cc_receipts') || {};
+    return (d[cc]||[]).map(function(r){
+      return Object.assign({},r,{received:parseFloat(r.received)||0,damage:parseFloat(r.damage)||0,net:parseFloat(r.net)||0,rate:parseFloat(r.rate)||0});
     });
   },
   addCCReceipt: function(cc, r) {
-    r.id = 'r'+Date.now();
-    r.cc = cc;
-    _cache.CC_Receipts.unshift(r);
-    sheetsPost('addCCReceipt', {data: r});
+    r.id = 'r' + Date.now(); r.cc = cc;
+    var d = lsGet('cc_receipts') || {};
+    if(!d[cc]) d[cc]=[];
+    d[cc].unshift(r); lsSet('cc_receipts',d);
+    sheetsPost('addCCReceipt',{data:r});
     return r;
+  },
+  deleteCCReceipt: function(cc, id) {
+    var d = lsGet('cc_receipts')||{};
+    if(d[cc]) d[cc]=d[cc].filter(function(x){return x.id!==id;});
+    lsSet('cc_receipts',d); sheetsPost('deleteCCReceipt',{id:id});
   },
 
   // --- CC Issues ---
   getCCIssues: function(cc) {
-    return _cache.CC_Issues.filter(function(i){ return i.cc === cc; }).map(function(i){
-      return Object.assign({}, i, {qty:num(i.qty), rate:num(i.rate), opening:num(i.opening), closing:num(i.closing)});
+    var d = lsGet('cc_issues') || {};
+    return (d[cc]||[]).map(function(i){
+      return Object.assign({},i,{qty:parseFloat(i.qty)||0,rate:parseFloat(i.rate)||0,opening:parseFloat(i.opening)||0,closing:parseFloat(i.closing)||0});
     });
   },
   addCCIssue: function(cc, issue) {
-    issue.id = 'i'+Date.now();
-    issue.cc = cc;
-    _cache.CC_Issues.unshift(issue);
-    sheetsPost('addCCIssue', {data: issue});
+    issue.id = 'i' + Date.now(); issue.cc = cc;
+    var d = lsGet('cc_issues')||{};
+    if(!d[cc]) d[cc]=[];
+    d[cc].unshift(issue); lsSet('cc_issues',d);
+    sheetsPost('addCCIssue',{data:issue});
     return issue;
+  },
+  deleteCCIssue: function(cc, id) {
+    var d = lsGet('cc_issues')||{};
+    if(d[cc]) d[cc]=d[cc].filter(function(x){return x.id!==id;});
+    lsSet('cc_issues',d); sheetsPost('deleteCCIssue',{id:id});
   },
 
   // --- Societies ---
   getSocieties: function(cc) {
-    var s = _cache.Societies;
-    return cc ? s.filter(function(x){ return x.cc === cc; }) : s;
+    var s = lsGet('societies')||[];
+    return cc ? s.filter(function(x){return x.cc===cc;}) : s;
   },
   addSociety: function(s) {
-    s.id = 's'+Date.now();
-    _cache.Societies.push(s);
-    sheetsPost('addSociety', {data: s});
+    s.id = 's' + Date.now();
+    var list = lsGet('societies')||[]; list.push(s); lsSet('societies',list);
+    sheetsPost('addSociety',{data:s});
     return s;
+  },
+  updateSociety: function(id,data) {
+    var list=lsGet('societies')||[], i=list.findIndex(function(x){return x.id===id;});
+    if(i>=0){ list[i]=Object.assign(list[i],data); lsSet('societies',list); sheetsPost('updateSociety',{id:id,data:data}); }
+  },
+  deleteSociety: function(id) {
+    var list=(lsGet('societies')||[]).filter(function(x){return x.id!==id;});
+    lsSet('societies',list); sheetsPost('deleteSociety',{id:id});
   },
 
   // --- Vehicles ---
-  getVehicles: function() { return _cache.Vehicles; },
+  getVehicles: function() { return lsGet('vehicles')||[]; },
+  addVehicle: function(v) {
+    v.id = 'veh'+Date.now();
+    var list=this.getVehicles(); list.push(v); lsSet('vehicles',list);
+    sheetsPost('addVehicle',{data:v});
+    return v;
+  },
+  updateVehicle: function(id,data) {
+    var list=this.getVehicles(), i=list.findIndex(function(x){return x.id===id;});
+    if(i>=0){ list[i]=Object.assign(list[i],data); lsSet('vehicles',list); sheetsPost('updateVehicle',{id:id,data:data}); }
+  },
+  deleteVehicle: function(id) {
+    var list=this.getVehicles().filter(function(x){return x.id!==id;});
+    lsSet('vehicles',list); sheetsPost('deleteVehicle',{id:id});
+  },
+
+  // --- Vehicle Logs ---
   getVehicleLogs: function(cc) {
-    return _cache.Vehicle_Logs.filter(function(l){ return l.cc === cc; });
+    var d = lsGet('vehicle_logs')||{};
+    return d[cc]||[];
   },
   addVehicleLog: function(cc, log) {
-    log.id = 'vl'+Date.now();
-    log.cc = cc;
-    _cache.Vehicle_Logs.unshift(log);
-    sheetsPost('addVehicleLog', {data: log});
+    log.id = 'vl'+Date.now(); log.cc = cc;
+    var d = lsGet('vehicle_logs')||{};
+    if(!d[cc]) d[cc]=[];
+    d[cc].unshift(log); lsSet('vehicle_logs',d);
+    sheetsPost('addVehicleLog',{data:log});
     return log;
+  },
+  deleteVehicleLog: function(cc, id) {
+    var d = lsGet('vehicle_logs')||{};
+    if(d[cc]) d[cc]=d[cc].filter(function(x){return x.id!==id;});
+    lsSet('vehicle_logs',d); sheetsPost('deleteVehicleLog',{id:id});
   },
 
   // --- Balance ---
-  getDairyBalance: function() { return num(_cache.Settings['dairy_balance'] || 0); },
+  getDairyBalance: function() { return parseFloat(lsGet('dairy_balance')||0)||0; },
   setDairyBalance: function(v) {
-    _cache.Settings['dairy_balance'] = String(v);
-    sheetsPost('setSetting', {key: 'dairy_balance', value: String(v)});
+    lsSet('dairy_balance', v);
+    sheetsPost('setSetting',{key:'dairy_balance',value:String(v)});
   },
 
-  // --- CC Stock ---
+  // --- CC Stock / Balance ---
   getCCStock: function(cc) {
-    var r = this.getCCReceipts(cc).reduce(function(s,x){ return s+(x.net||0); }, 0);
-    var i = this.getCCIssues(cc).reduce(function(s,x){ return s+(x.qty||0); }, 0);
+    var r = this.getCCReceipts(cc).reduce(function(s,x){return s+x.net;},0);
+    var i = this.getCCIssues(cc).reduce(function(s,x){return s+x.qty;},0);
     return Math.max(0, r - i);
   },
   getCCBalance: function(cc) {
-    var recv = this.getAllotmentsByCC(cc).reduce(function(s,x){ return s+x.total; }, 0);
-    var iss  = this.getCCIssues(cc).reduce(function(s,x){ return s+(x.qty*x.rate); }, 0);
+    var recv = this.getAllotmentsByCC(cc).reduce(function(s,x){return s+x.total;},0);
+    var iss  = this.getCCIssues(cc).reduce(function(s,x){return s+(x.qty*x.rate);},0);
     return Math.max(0, recv - iss);
   },
 
   // --- Alert Settings ---
   getAlertSettings: function() {
-    var s = _cache.Settings;
-    return {
-      lowStock:  num(s['lowStock']  || 15),
-      warnStock: num(s['warnStock'] || 25),
-      phone:     s['alert_phone'] || '',
-      via:       s['alert_via']   || 'SMS',
-    };
+    var s = lsGet('alert_settings');
+    return s ? {lowStock:parseFloat(s.lowStock)||15,warnStock:parseFloat(s.warnStock)||25,phone:s.phone||'',via:s.via||'SMS'}
+             : {lowStock:15,warnStock:25,phone:'',via:'SMS'};
   },
   saveAlertSettings: function(cfg) {
-    _cache.Settings['lowStock']   = String(cfg.lowStock);
-    _cache.Settings['warnStock']  = String(cfg.warnStock);
-    _cache.Settings['alert_phone']= cfg.phone;
-    _cache.Settings['alert_via']  = cfg.via;
-    sheetsPost('setSetting', {key:'lowStock',    value:String(cfg.lowStock)});
-    sheetsPost('setSetting', {key:'warnStock',   value:String(cfg.warnStock)});
-    sheetsPost('setSetting', {key:'alert_phone', value:cfg.phone});
-    sheetsPost('setSetting', {key:'alert_via',   value:cfg.via});
-  },
-
-  // --- Clear all ---
-  clearAll: function() {
-    Object.keys(_cache).forEach(function(k){ _cache[k] = Array.isArray(_cache[k]) ? [] : {}; });
-    sheetsPost('clearAll', {});
+    lsSet('alert_settings',cfg);
+    sheetsPost('setSetting',{key:'alert_settings',value:JSON.stringify(cfg)});
   },
 
   // --- Date filter ---
@@ -588,62 +649,119 @@ var DB = {
     });
   },
 
-  // --- Legacy shims for _get/_set (masters.js uses these) ---
+  // --- Clear all ---
+  clearAll: function() {
+    Object.keys(localStorage).filter(function(k){return k.startsWith('gkd_');})
+      .forEach(function(k){localStorage.removeItem(k);});
+    if(SHEETS_READY && SCRIPT_URL) sheetsPost('clearAll',{});
+  },
+
+  // --- Legacy _get/_set shims (used by masters.js) ---
   _get: function(key) {
-    var map = {
-      'vendors':_cache.Vendors, 'purchases':_cache.Purchases,
-      'cc_allotments':_cache.CC_Allotments, 'societies':_cache.Societies,
-      'vehicles':_cache.Vehicles, 'feed_types':_cache.Feed_Types,
-      'drivers':_cache.Drivers, 'cc_centers':_cache.CC_Centers,
-    };
-    return map[key] !== undefined ? map[key] : null;
+    return lsGet(key);
   },
   _set: function(key, val) {
+    lsSet(key, val);
+    // Fire-and-forget to Sheets for supported keys
     var sheetMap = {
-      'vendors':'Vendors', 'purchases':'Purchases',
-      'cc_allotments':'CC_Allotments', 'societies':'Societies',
-      'vehicles':'Vehicles', 'feed_types':'Feed_Types',
-      'drivers':'Drivers', 'cc_centers':'CC_Centers',
+      'vendors':'Vendors','purchases':'Purchases','cc_allotments':'CC_Allotments',
+      'societies':'Societies','vehicles':'Vehicles',
     };
-    var cacheMap = {
-      'vendors':'Vendors', 'purchases':'Purchases',
-      'cc_allotments':'CC_Allotments', 'societies':'Societies',
-      'vehicles':'Vehicles', 'feed_types':'Feed_Types',
-      'drivers':'Drivers', 'cc_centers':'CC_Centers',
-    };
-    if (cacheMap[key]) _cache[cacheMap[key]] = val;
-    // Sync individual changed records to Sheets is handled by each master save function
-    // For bulk operations from masters.js, we sync the full array:
-    if (sheetMap[key]) {
-      // Clear + re-add is expensive; for masters edits we use update/delete endpoints
-      // This _set is called by masters after manual edits — sync will happen via dedicated endpoints
+    if(sheetMap[key] && SHEETS_READY && SCRIPT_URL) {
+      sheetsPost('bulkReplace',{sheet:sheetMap[key],rows:val});
     }
   },
 };
 
-// Override MasterDB to use Sheets endpoints
+// ==================== MASTER DB ====================
+// Feed Types, Drivers, CC Centers — all localStorage-first
+
 var MasterDB = {
-  getFeedTypes:    function(){ return _cache.Feed_Types; },
-  addFeedType:     function(ft){ ft.id='ft'+Date.now(); _cache.Feed_Types.push(ft); sheetsPost('addFeedType',{data:ft}); return ft; },
-  updateFeedType:  function(id,data){ var i=_cache.Feed_Types.findIndex(function(x){return x.id===id;}); if(i>=0) _cache.Feed_Types[i]=Object.assign(_cache.Feed_Types[i],data); sheetsPost('updateFeedType',{id:id,data:data}); },
-  deleteFeedType:  function(id){ _cache.Feed_Types=_cache.Feed_Types.filter(function(x){return x.id!==id;}); sheetsPost('deleteFeedType',{id:id}); },
 
-  getDrivers:      function(){ return _cache.Drivers; },
-  addDriver:       function(d){ d.id='dr'+Date.now(); _cache.Drivers.push(d); sheetsPost('addDriver',{data:d}); return d; },
-  updateDriver:    function(id,data){ var i=_cache.Drivers.findIndex(function(x){return x.id===id;}); if(i>=0) _cache.Drivers[i]=Object.assign(_cache.Drivers[i],data); sheetsPost('updateDriver',{id:id,data:data}); },
-  deleteDriver:    function(id){ _cache.Drivers=_cache.Drivers.filter(function(x){return x.id!==id;}); sheetsPost('deleteDriver',{id:id}); },
+  // --- Feed Types ---
+  getFeedTypes: function() { return lsGet('feed_types') || []; },
+  addFeedType: function(ft) {
+    ft.id = 'ft'+Date.now();
+    var list = this.getFeedTypes(); list.push(ft); lsSet('feed_types',list);
+    sheetsPost('addFeedType',{data:ft});
+    return ft;
+  },
+  updateFeedType: function(id, data) {
+    var list = this.getFeedTypes(), i = list.findIndex(function(x){return x.id===id;});
+    if(i>=0){ list[i]=Object.assign(list[i],data); lsSet('feed_types',list); sheetsPost('updateFeedType',{id:id,data:data}); }
+  },
+  deleteFeedType: function(id) {
+    var list = this.getFeedTypes().filter(function(x){return x.id!==id;});
+    lsSet('feed_types',list); sheetsPost('deleteFeedType',{id:id});
+  },
 
-  getCCCenters:    function(){ return _cache.CC_Centers; },
-  addCCCenter:     function(c){ c.id='cc_'+Date.now(); _cache.CC_Centers.push(c); sheetsPost('addCCCenter',{data:c}); return c; },
-  updateCCCenter:  function(id,data){ var i=_cache.CC_Centers.findIndex(function(x){return x.id===id;}); if(i>=0) _cache.CC_Centers[i]=Object.assign(_cache.CC_Centers[i],data); sheetsPost('updateCCCenter',{id:id,data:data}); },
-  deleteCCCenter:  function(id){ _cache.CC_Centers=_cache.CC_Centers.filter(function(x){return x.id!==id;}); sheetsPost('deleteCCCenter',{id:id}); },
+  // --- Drivers ---
+  getDrivers: function() { return lsGet('drivers') || []; },
+  addDriver: function(d) {
+    d.id = 'dr'+Date.now();
+    var list = this.getDrivers(); list.push(d); lsSet('drivers',list);
+    sheetsPost('addDriver',{data:d});
+    return d;
+  },
+  updateDriver: function(id, data) {
+    var list = this.getDrivers(), i = list.findIndex(function(x){return x.id===id;});
+    if(i>=0){ list[i]=Object.assign(list[i],data); lsSet('drivers',list); sheetsPost('updateDriver',{id:id,data:data}); }
+  },
+  deleteDriver: function(id) {
+    var list = this.getDrivers().filter(function(x){return x.id!==id;});
+    lsSet('drivers',list); sheetsPost('deleteDriver',{id:id});
+  },
 
-  // Bulk imports
-  bulkAddVendors:    function(rows){ rows.forEach(function(r){ if(r.name) DB.addVendor(r); }); return rows.length; },
-  bulkAddSocieties:  function(rows){ rows.forEach(function(r){ if(r.name&&r.cc) DB.addSociety(r); }); return rows.length; },
-  bulkAddVehicles:   function(rows){ rows.forEach(function(r){ if(r.no){ r.id='veh'+Date.now(); _cache.Vehicles.push(r); sheetsPost('addVehicle',{data:r}); } }); return rows.length; },
-  bulkAddDrivers:    function(rows){ rows.forEach(function(r){ if(r.name) MasterDB.addDriver(r); }); return rows.length; },
-  bulkAddFeedTypes:  function(rows){ rows.forEach(function(r){ if(r.name){ r.unit=r.unit||'Bag'; MasterDB.addFeedType(r); } }); return rows.length; },
+  // --- CC Centers ---
+  getCCCenters: function() { return lsGet('cc_centers') || []; },
+  addCCCenter: function(c) {
+    c.id = 'cc_'+Date.now();
+    var list = this.getCCCenters(); list.push(c); lsSet('cc_centers',list);
+    sheetsPost('addCCCenter',{data:c});
+    return c;
+  },
+  updateCCCenter: function(id, data) {
+    var list = this.getCCCenters(), i = list.findIndex(function(x){return x.id===id;});
+    if(i>=0){ list[i]=Object.assign(list[i],data); lsSet('cc_centers',list); sheetsPost('updateCCCenter',{id:id,data:data}); }
+  },
+  deleteCCCenter: function(id) {
+    var list = this.getCCCenters().filter(function(x){return x.id!==id;});
+    lsSet('cc_centers',list); sheetsPost('deleteCCCenter',{id:id});
+  },
+
+  // --- Bulk imports ---
+  bulkAddVendors: function(rows) {
+    var added=0;
+    rows.forEach(function(r){ if(r.name){ r.id='v'+Date.now()+'_'+(added++); } });
+    var list=DB.getVendors(); rows.forEach(function(r){if(r.name)list.push(r);});
+    lsSet('vendors',list);
+    rows.forEach(function(r){if(r.name)sheetsPost('addVendor',{data:r});});
+    return rows.filter(function(r){return r.name;}).length;
+  },
+  bulkAddSocieties: function(rows) {
+    var added=0;
+    var list=DB.getSocieties();
+    rows.forEach(function(r){ if(r.name&&r.cc){ r.id='s'+Date.now()+'_'+(added++); list.push(r); sheetsPost('addSociety',{data:r}); }});
+    lsSet('societies',list);
+    return added;
+  },
+  bulkAddVehicles: function(rows) {
+    var added=0;
+    var list=DB.getVehicles();
+    rows.forEach(function(r){ if(r.no){ r.id='veh'+Date.now()+'_'+(added++); list.push(r); sheetsPost('addVehicle',{data:r}); }});
+    lsSet('vehicles',list);
+    return added;
+  },
+  bulkAddDrivers: function(rows) {
+    var added=0;
+    rows.forEach(function(r){ if(r.name){ MasterDB.addDriver(r); added++; }});
+    return added;
+  },
+  bulkAddFeedTypes: function(rows) {
+    var added=0;
+    rows.forEach(function(r){ if(r.name){ r.unit=r.unit||'Bag'; MasterDB.addFeedType(r); added++; }});
+    return added;
+  },
 };
 
 // ==================== MASTERS MODULE ====================
@@ -653,101 +771,8 @@ var MasterDB = {
 var _editState = {};
 
 // ==================== MASTER DB EXTENSIONS ====================
-var MasterDB = {
-  getFeedTypes: function(){
-    var d = DB._get('feed_types');
-    if(d) return d;
-    DB._set('feed_types', []);
-    return [];
-  },
-  addFeedType: function(ft){
-    var list = this.getFeedTypes();
-    ft.id = 'ft'+Date.now();
-    list.push(ft);
-    DB._set('feed_types', list);
-    return ft;
-  },
-  updateFeedType: function(id, data){
-    var list = this.getFeedTypes();
-    var i = list.findIndex(function(x){return x.id===id;});
-    if(i>=0){ list[i] = Object.assign(list[i], data); DB._set('feed_types', list); }
-  },
-  deleteFeedType: function(id){
-    DB._set('feed_types', this.getFeedTypes().filter(function(x){return x.id!==id;}));
-  },
-  getDrivers: function(){
-    var d = DB._get('drivers');
-    if(d) return d;
-    DB._set('drivers', []);
-    return [];
-  },
-  addDriver: function(d){
-    var list = this.getDrivers();
-    d.id = 'dr'+Date.now();
-    list.push(d);
-    DB._set('drivers', list);
-    return d;
-  },
-  updateDriver: function(id, data){
-    var list = this.getDrivers();
-    var i = list.findIndex(function(x){return x.id===id;});
-    if(i>=0){ list[i] = Object.assign(list[i], data); DB._set('drivers', list); }
-  },
-  deleteDriver: function(id){
-    DB._set('drivers', this.getDrivers().filter(function(x){return x.id!==id;}));
-  },
-  getCCCenters: function(){
-    var d = DB._get('cc_centers');
-    if(d) return d;
-    DB._set('cc_centers', []);
-    return [];
-  },
-  addCCCenter: function(c){
-    var list = this.getCCCenters();
-    c.id = 'cc_'+Date.now();
-    list.push(c);
-    DB._set('cc_centers', list);
-    return c;
-  },
-  updateCCCenter: function(id, data){
-    var list = this.getCCCenters();
-    var i = list.findIndex(function(x){return x.id===id;});
-    if(i>=0){ list[i] = Object.assign(list[i], data); DB._set('cc_centers', list); }
-  },
-  deleteCCCenter: function(id){
-    DB._set('cc_centers', this.getCCCenters().filter(function(x){return x.id!==id;}));
-  },
-  bulkAddVendors: function(rows){
-    var list = DB.getVendors(), added = 0;
-    rows.forEach(function(r){ if(!r.name) return; r.id='v'+Date.now()+'_'+(added++); list.push(r); });
-    DB._set('vendors', list);
-    return added;
-  },
-  bulkAddSocieties: function(rows){
-    var list = DB._get('societies')||[], added = 0;
-    rows.forEach(function(r){ if(!r.name||!r.cc) return; r.id='s'+Date.now()+'_'+(added++); list.push(r); });
-    DB._set('societies', list);
-    return added;
-  },
-  bulkAddVehicles: function(rows){
-    var list = DB.getVehicles(), added = 0;
-    rows.forEach(function(r){ if(!r.no) return; r.id='veh'+Date.now()+'_'+(added++); list.push(r); });
-    DB._set('vehicles', list);
-    return added;
-  },
-  bulkAddDrivers: function(rows){
-    var list = this.getDrivers(), added = 0;
-    rows.forEach(function(r){ if(!r.name) return; r.id='dr'+Date.now()+'_'+(added++); list.push(r); });
-    DB._set('drivers', list);
-    return added;
-  },
-  bulkAddFeedTypes: function(rows){
-    var list = this.getFeedTypes(), added = 0;
-    rows.forEach(function(r){ if(!r.name) return; r.id='ft'+Date.now()+'_'+(added++); r.unit=r.unit||'Bag'; list.push(r); });
-    DB._set('feed_types', list);
-    return added;
-  }
-};
+// MasterDB is defined in sheets_db.js — do not redefine here
+
 
 // ==================== MASTERS HOME ====================
 function renderMastersHome(){
@@ -1238,75 +1263,590 @@ function importRows(key, rows){
   } catch(e){ showToast('Import error: '+e.message,'error'); }
 }
 
-// ==================== MOBILE APP LOGIC ====================
+// ==================== THEME SYSTEM ====================
+var THEMES = {
+  navy: {
+    name: 'Navy Blue',
+    icon: '🌊',
+    '--navy':    '#0A1628',
+    '--navy2':   '#0F2040',
+    '--navy3':   '#1A3560',
+    '--gold':    '#D4A843',
+    '--gold2':   '#F0C060',
+    '--gold3':   '#FFF0C0',
+    '--blue':    '#1E88E5',
+    '--blue2':   '#42A5F5',
+    '--green':   '#00C853',
+    '--red':     '#FF5252',
+    '--amber':   '#FFB300',
+    '--surface': '#0F2040',
+    '--surface2':'#162840',
+    '--card':    '#1A3060',
+    '--border':  'rgba(212,168,67,.18)',
+    '--border2': 'rgba(212,168,67,.35)',
+    '--text':    '#E8EDF5',
+    '--text2':   '#8A9DC0',
+    '--text3':   '#4A5F80',
+    '--accent':  '#D4A843',
+    '--accent2': '#F0C060',
+  },
+  forest: {
+    name: 'Forest Green',
+    icon: '🌿',
+    '--navy':    '#0A1F0F',
+    '--navy2':   '#0F2D16',
+    '--navy3':   '#1A4528',
+    '--gold':    '#4CAF50',
+    '--gold2':   '#81C784',
+    '--gold3':   '#C8E6C9',
+    '--blue':    '#26A69A',
+    '--blue2':   '#4DB6AC',
+    '--green':   '#00E676',
+    '--red':     '#FF5252',
+    '--amber':   '#FFD54F',
+    '--surface': '#0F2D16',
+    '--surface2':'#163820',
+    '--card':    '#1A4528',
+    '--border':  'rgba(76,175,80,.18)',
+    '--border2': 'rgba(76,175,80,.4)',
+    '--text':    '#E8F5E9',
+    '--text2':   '#81C784',
+    '--text3':   '#4CAF50',
+    '--accent':  '#4CAF50',
+    '--accent2': '#81C784',
+  },
+  sunset: {
+    name: 'Sunset',
+    icon: '🌅',
+    '--navy':    '#1A0A00',
+    '--navy2':   '#2D1200',
+    '--navy3':   '#451A00',
+    '--gold':    '#FF7043',
+    '--gold2':   '#FF8A65',
+    '--gold3':   '#FFCCBC',
+    '--blue':    '#FF9800',
+    '--blue2':   '#FFB74D',
+    '--green':   '#69F0AE',
+    '--red':     '#FF5252',
+    '--amber':   '#FFD740',
+    '--surface': '#2D1200',
+    '--surface2':'#3A1800',
+    '--card':    '#451A00',
+    '--border':  'rgba(255,112,67,.18)',
+    '--border2': 'rgba(255,112,67,.4)',
+    '--text':    '#FBE9E7',
+    '--text2':   '#FF8A65',
+    '--text3':   '#BF360C',
+    '--accent':  '#FF7043',
+    '--accent2': '#FF8A65',
+  },
+  purple: {
+    name: 'Royal Purple',
+    icon: '👑',
+    '--navy':    '#0D0A1F',
+    '--navy2':   '#160F35',
+    '--navy3':   '#241A55',
+    '--gold':    '#9C27B0',
+    '--gold2':   '#CE93D8',
+    '--gold3':   '#F3E5F5',
+    '--blue':    '#7C4DFF',
+    '--blue2':   '#B388FF',
+    '--green':   '#00E676',
+    '--red':     '#FF5252',
+    '--amber':   '#FFD740',
+    '--surface': '#160F35',
+    '--surface2':'#1E1445',
+    '--card':    '#241A55',
+    '--border':  'rgba(156,39,176,.2)',
+    '--border2': 'rgba(156,39,176,.45)',
+    '--text':    '#F3E5F5',
+    '--text2':   '#CE93D8',
+    '--text3':   '#9C27B0',
+    '--accent':  '#9C27B0',
+    '--accent2': '#CE93D8',
+  },
+};
 
-var currentRole = null;
-var currentPage = null;
+var currentTheme = localStorage.getItem('gkd_theme') || 'navy';
 
-// ---- Dynamic CC list ----
-function getCCList(){
-  return (DB._get('cc_centers')||[]).map(function(c){return {id:c.id,name:c.name};});
-}
-
-// ---- Feed Type options ----
-function getFeedTypeOpts(sel){
-  var types = MasterDB.getFeedTypes();
-  if(!types||!types.length) return '<option value="">-- Feed Type Master-ல் add செய்யுங்கள் --</option>';
-  return types.map(function(ft){
-    return '<option value="'+ft.name+'"'+(sel===ft.name?' selected':'')+'>'+ft.name+'</option>';
-  }).join('');
-}
-
-// ---- Populate login dropdown ----
-function populateLoginDropdown(){
-  var sel = document.getElementById('lt');
-  if(!sel) return;
-  while(sel.options.length>1) sel.remove(1);
-  getCCList().forEach(function(cc){
-    var o=document.createElement('option');
-    o.value=cc.id; o.textContent='🏪 '+cc.name;
-    sel.appendChild(o);
+function applyTheme(key) {
+  var t = THEMES[key];
+  if (!t) return;
+  currentTheme = key;
+  localStorage.setItem('gkd_theme', key);
+  var root = document.documentElement;
+  Object.keys(t).forEach(function(k) {
+    if (k.startsWith('--')) root.style.setProperty(k, t[k]);
+  });
+  document.querySelectorAll('.theme-btn').forEach(function(b) {
+    b.classList.toggle('active', b.dataset.theme === key);
   });
 }
 
-function updateLoginHint(){
-  var t=document.getElementById('lt').value;
-  var hint=document.getElementById('login-hint');
-  if(!hint) return;
-  if(t==='dairy') hint.textContent='Main Dairy: Vendors, CC allocation, reports & balance';
-  else{ var cc=getCCList().find(function(c){return c.id===t;}); hint.textContent=cc?cc.name+': Feed receipt & society issue':''; }
+function renderThemePicker() {
+  return '<div style="display:flex;gap:8px;flex-wrap:wrap">'
+    + Object.keys(THEMES).map(function(k) {
+      var t = THEMES[k];
+      return '<button class="theme-btn'+(k===currentTheme?' active':'')+'" data-theme="'+k+'" onclick="applyTheme(\''+k+'\')" '
+        + 'style="flex:1;min-width:100px;padding:10px 8px;background:var(--surface2);border:2px solid '+(k===currentTheme?'var(--accent)':'var(--border)')+';border-radius:10px;cursor:pointer;font-family:inherit;transition:all .2s">'
+        + '<div style="font-size:20px;margin-bottom:4px">'+t.icon+'</div>'
+        + '<div style="font-size:11px;font-weight:600;color:var(--text)">'+t.name+'</div>'
+        + '</button>';
+    }).join('')
+    + '</div>';
 }
 
-// ---- Login ----
+// Apply saved theme on load
+document.addEventListener('DOMContentLoaded', function() { applyTheme(currentTheme); });
+
+// ==================== SEARCHABLE SELECT COMPONENT ====================
+// Usage: searchSelect({id, options:[{value,label}], placeholder, onSelect})
+
+var _ssOpen = null;
+
+function searchSelect(cfg) {
+  var id = cfg.id;
+  var options = cfg.options || [];
+  var placeholder = cfg.placeholder || 'Search...';
+  var selected = cfg.selected || { value: '', label: '' };
+
+  return '<div class="ss-wrap" id="ss-wrap-'+id+'" style="position:relative">'
+    + '<div class="ss-display" id="ss-disp-'+id+'" onclick="toggleSS(\''+id+'\')" '
+    + 'style="width:100%;padding:13px 36px 13px 16px;background:var(--navy2);border:1.5px solid var(--border);'
+    + 'border-radius:12px;font-size:14px;color:'+(selected.value?'var(--text)':'var(--text3)')+';cursor:pointer;position:relative;user-select:none">'
+    + (selected.label || placeholder)
+    + '<span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--accent);font-size:12px">▾</span>'
+    + '</div>'
+    + '<div class="ss-dropdown" id="ss-drop-'+id+'" style="display:none;position:absolute;top:calc(100% + 4px);left:0;right:0;'
+    + 'background:var(--surface);border:1.5px solid var(--border2);border-radius:12px;z-index:999;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.5)">'
+    + '<div style="padding:10px">'
+    + '<input type="text" id="ss-inp-'+id+'" placeholder="🔍 தேடுங்கள்..." oninput="filterSS(\''+id+'\')" '
+    + 'style="width:100%;padding:10px 14px;background:var(--navy2);border:1.5px solid var(--border);border-radius:8px;'
+    + 'font-size:13px;color:var(--text);font-family:inherit;outline:none">'
+    + '</div>'
+    + '<div id="ss-list-'+id+'" style="max-height:220px;overflow-y:auto;padding:0 6px 8px">'
+    + renderSSOptions(options, id, '')
+    + '</div>'
+    + '</div>'
+    + '<input type="hidden" id="ss-val-'+id+'" value="'+selected.value+'">'
+    + '</div>';
+}
+
+function renderSSOptions(options, id, filter) {
+  var filtered = filter
+    ? options.filter(function(o) { return o.label.toLowerCase().includes(filter.toLowerCase()); })
+    : options;
+  if (!filtered.length) return '<div style="padding:12px;text-align:center;font-size:12px;color:var(--text3)">No results found</div>';
+  return filtered.map(function(o) {
+    return '<div class="ss-opt" onclick="selectSS(\''+id+'\',\''+o.value.replace(/'/g,"\\'")
+      +'\',\''+o.label.replace(/'/g,"\\'")+'\',\''+encodeURIComponent(o.extra||'')+'\')" '
+      + 'style="padding:10px 12px;border-radius:8px;cursor:pointer;font-size:13px;color:var(--text);transition:background .15s" '
+      + 'onmouseover="this.style.background=\'var(--navy3)\'" onmouseout="this.style.background=\'\'">'
+      + o.label
+      + (o.sub ? '<div style="font-size:11px;color:var(--text2);margin-top:2px">'+o.sub+'</div>' : '')
+      + '</div>';
+  }).join('');
+}
+
+function toggleSS(id) {
+  var drop = document.getElementById('ss-drop-'+id);
+  if (!drop) return;
+  var isOpen = drop.style.display !== 'none';
+  // close all others
+  document.querySelectorAll('.ss-dropdown').forEach(function(d) { d.style.display = 'none'; });
+  if (!isOpen) {
+    drop.style.display = 'block';
+    var inp = document.getElementById('ss-inp-'+id);
+    if (inp) setTimeout(function() { inp.focus(); }, 50);
+    _ssOpen = id;
+  } else {
+    _ssOpen = null;
+  }
+}
+
+function filterSS(id) {
+  var inp = document.getElementById('ss-inp-'+id);
+  var list = document.getElementById('ss-list-'+id);
+  if (!inp || !list) return;
+  var wrap = document.getElementById('ss-wrap-'+id);
+  if (!wrap) return;
+  var opts = wrap._ssOptions || [];
+  list.innerHTML = renderSSOptions(opts, id, inp.value);
+}
+
+function selectSS(id, value, label, extraEnc) {
+  var valEl = document.getElementById('ss-val-'+id);
+  var dispEl = document.getElementById('ss-disp-'+id);
+  var drop = document.getElementById('ss-drop-'+id);
+  if (valEl) valEl.value = value;
+  if (dispEl) {
+    dispEl.innerHTML = label + '<span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--accent);font-size:12px">▾</span>';
+    dispEl.style.color = 'var(--text)';
+  }
+  if (drop) drop.style.display = 'none';
+  _ssOpen = null;
+  // Trigger custom callback
+  var extra = extraEnc ? decodeURIComponent(extraEnc) : '';
+  var fn = window['onSS_'+id];
+  if (fn) fn(value, label, extra);
+}
+
+function getSSValue(id) { var el = document.getElementById('ss-val-'+id); return el ? el.value : ''; }
+function getSSLabel(id) {
+  var el = document.getElementById('ss-disp-'+id);
+  if (!el) return '';
+  return el.textContent.trim().replace('▾','').trim();
+}
+
+// Store options on wrap element for filtering
+function initSS(id, options) {
+  var wrap = document.getElementById('ss-wrap-'+id);
+  if (wrap) wrap._ssOptions = options;
+}
+
+// Close on outside click
+document.addEventListener('click', function(e) {
+  if (_ssOpen && e.target && !e.target.closest('#ss-wrap-'+_ssOpen)) {
+    var drop = document.getElementById('ss-drop-'+_ssOpen);
+    if (drop) drop.style.display = 'none';
+    _ssOpen = null;
+  }
+});
+
+// ==================== EDIT / DELETE for Transactions ====================
+// These functions handle inline edit/delete for purchases, allotments, receipts, issues
+
+function editPurchase(id) {
+  var list = DB.getPurchases();
+  var item = list.find(function(x) { return x.id === id; });
+  if (!item) return;
+  _editState.purchase = id;
+  showPage('d-purchase');
+  setTimeout(function() {
+    var f = function(fid, val) { var el=document.getElementById(fid); if(el) el.value=val||''; };
+    f('p-date', item.date);
+    f('p-inv',  item.invoice);
+    f('p-qty',  item.qty);
+    f('p-rate', item.rate);
+    f('p-total',item.total);
+    // vendor SS
+    selectSS('p-vendor', item.vendorId||item.vendorName, item.vendorName, '');
+    // feed type SS
+    selectSS('p-type', item.feedType, item.feedType, '');
+    var btn = document.getElementById('purchase-save-btn');
+    var title = document.getElementById('purchase-form-title');
+    if (btn) btn.textContent = 'Update Purchase ✓';
+    if (title) title.textContent = '✏️ Edit Purchase';
+    document.getElementById('main-area').scrollTop = 0;
+  }, 100);
+}
+
+function deletePurchase(id) {
+  if (!confirm('இந்த purchase delete செய்யவா?')) return;
+  var list = DB.getPurchases().filter(function(x) { return x.id !== id; });
+  DB._set('purchases', list);
+  showToast('Purchase deleted', 'info');
+  showPage('d-purchase');
+}
+
+function editAllotment(id) {
+  var list = DB.getAllotments();
+  var item = list.find(function(x) { return x.id === id; });
+  if (!item) return;
+  _editState.allotment = id;
+  showPage('d-dispatch');
+  setTimeout(function() {
+    var f = function(fid, val) { var el=document.getElementById(fid); if(el) el.value=val||''; };
+    f('al-date', item.date);
+    f('al-qty',  item.qty);
+    f('al-rate', item.rate);
+    f('al-total',item.total);
+    f('al-veh2', item.vehicle);
+    selectSS('al-cc',   item.cc,       item.ccName,   '');
+    selectSS('al-type', item.feedType, item.feedType, '');
+    var btn = document.getElementById('dispatch-save-btn');
+    if (btn) btn.textContent = 'Update Dispatch ✓';
+    document.getElementById('main-area').scrollTop = 0;
+  }, 100);
+}
+
+function deleteAllotment(id) {
+  if (!confirm('இந்த dispatch delete செய்யவா?')) return;
+  var list = DB.getAllotments().filter(function(x) { return x.id !== id; });
+  DB._set('cc_allotments', list);
+  showToast('Dispatch deleted', 'info');
+  showPage('d-dispatch');
+}
+
+function deleteReceipt(cc, id) {
+  if (!confirm('இந்த receipt delete செய்யவா?')) return;
+  var d = DB._get('cc_receipts') || {};
+  if (d[cc]) d[cc] = d[cc].filter(function(x) { return x.id !== id; });
+  DB._set('cc_receipts', d);
+  showToast('Receipt deleted', 'info');
+  showPage('cc-receive');
+}
+
+function deleteIssue(cc, id) {
+  if (!confirm('இந்த issue delete செய்யவா?')) return;
+  var d = DB._get('cc_issues') || {};
+  if (d[cc]) d[cc] = d[cc].filter(function(x) { return x.id !== id; });
+  DB._set('cc_issues', d);
+  showToast('Issue deleted', 'info');
+  showPage('cc-issue');
+}
+
+function deleteVehicleLog(cc, id) {
+  if (!confirm('இந்த log delete செய்யவா?')) return;
+  var d = DB._get('vehicle_logs') || {};
+  if (d[cc]) d[cc] = d[cc].filter(function(x) { return x.id !== id; });
+  DB._set('vehicle_logs', d);
+  showToast('Log deleted', 'info');
+  showPage('cc-vehicle');
+}
+
+// ==================== AUTH SYSTEM ====================
+// Each login has its own username + password
+// CC logins can only see their own CC data
+// Dairy admin can see everything + manage passwords
+
+var AUTH = {
+
+  // Default credentials (stored in localStorage, editable from Masters)
+  getUsers: function() {
+    var saved = localStorage.getItem('gkd_users');
+    if (saved) { try { return JSON.parse(saved); } catch(e){} }
+    // Default users
+    var defaults = [
+      { id: 'dairy', role: 'dairy', name: 'Main Dairy', username: 'admin',   password: 'dairy123',  canEdit: true },
+    ];
+    // Add CC users dynamically from CC Centers master
+    var centers = MasterDB.getCCCenters();
+    centers.forEach(function(cc) {
+      defaults.push({
+        id: cc.id,
+        role: 'cc',
+        name: cc.name,
+        username: cc.id,
+        password: 'cc123',
+        canEdit: true,
+      });
+    });
+    return defaults;
+  },
+
+  saveUsers: function(users) {
+    localStorage.setItem('gkd_users', JSON.stringify(users));
+  },
+
+  // Find user by username
+  findUser: function(username) {
+    return this.getUsers().find(function(u) {
+      return u.username.toLowerCase() === username.toLowerCase().trim();
+    });
+  },
+
+  // Verify login
+  login: function(username, password) {
+    var user = this.findUser(username);
+    if (!user) return { ok: false, error: 'Username தவறானது' };
+    if (user.password !== password) return { ok: false, error: 'Password தவறானது' };
+    return { ok: true, user: user };
+  },
+
+  // Current logged in user
+  currentUser: null,
+
+  // Check if user can access a CC's data
+  canAccessCC: function(ccId) {
+    if (!this.currentUser) return false;
+    if (this.currentUser.role === 'dairy') return true; // dairy sees all
+    return this.currentUser.id === ccId;
+  },
+
+  // Hash simple password (basic obfuscation for display)
+  maskPassword: function(pwd) {
+    return '•'.repeat(pwd.length);
+  },
+};
+
+// ==================== PASSWORD MANAGEMENT PAGE ====================
+function renderPasswordManager() {
+  var users = AUTH.getUsers();
+  var rows = users.map(function(u, i) {
+    return '<tr>'
+      + '<td>' + (u.role==='dairy'?'<span class="badge badge-gold">🏭 Dairy</span>':'<span class="badge badge-blue">🏪 CC</span>') + '</td>'
+      + '<td><strong>' + u.name + '</strong></td>'
+      + '<td><code style="background:var(--navy2);padding:2px 8px;border-radius:6px;font-size:12px;color:var(--accent2)">' + u.username + '</code></td>'
+      + '<td>'
+        + '<button onclick="editUserPassword('+i+')" style="background:rgba(30,136,229,.15);border:1px solid rgba(30,136,229,.3);color:var(--blue2);padding:5px 10px;border-radius:7px;font-size:11px;cursor:pointer">'
+        + '🔑 Change</button>'
+      + '</td>'
+      + '</tr>';
+  }).join('');
+
+  return '<div class="back-header">'
+    + '<div class="back-btn" onclick="showMasterDetail(\'password\')">←</div>'
+    + '<div class="back-title">🔑 Password Manager</div>'
+    + '</div>'
+    + '<div class="alert alert-info"><span class="alert-icon">ℹ️</span>'
+    + '<div>ஒவ்வொரு login-க்கும் தனி password. CC login-கள் தங்கள் data மட்டும் பார்க்கலாம்.</div></div>'
+    + '<div class="card">'
+    + '<div class="card-title"><span class="ct-icon">👥</span>All Users</div>'
+    + '<div class="tbl-wrap"><table>'
+    + '<thead><tr><th>Type</th><th>Name</th><th>Username</th><th>Action</th></tr></thead>'
+    + '<tbody>' + rows + '</tbody>'
+    + '</table></div>'
+    + '</div>'
+    + '<div class="card" id="pwd-edit-card" style="display:none">'
+    + '<div class="card-title" id="pwd-edit-title"><span class="ct-icon">✏️</span>Change Password</div>'
+    + '<div class="form-group"><label>New Username</label><input type="text" id="pwd-uname" placeholder="username"></div>'
+    + '<div class="form-group"><label>New Password</label><input type="password" id="pwd-new" placeholder="New password"></div>'
+    + '<div class="form-group"><label>Confirm Password</label><input type="password" id="pwd-confirm" placeholder="Confirm password"></div>'
+    + '<input type="hidden" id="pwd-user-idx">'
+    + '<div class="btn-row">'
+    + '<button class="btn btn-ghost" onclick="document.getElementById(\'pwd-edit-card\').style.display=\'none\'">Cancel</button>'
+    + '<button class="btn btn-gold" style="flex:1;justify-content:center" onclick="savePassword()">Save Password ✓</button>'
+    + '</div></div>'
+    + '<div class="card">'
+    + '<div class="card-title"><span class="ct-icon">🔄</span>Sync CC Users from Masters</div>'
+    + '<p style="font-size:12px;color:var(--text2);margin-bottom:12px">CC Center add/delete செய்தால் இங்கே sync பண்ணுங்கள்</p>'
+    + '<button class="btn btn-primary btn-full" onclick="syncCCUsers()">🔄 Sync CC Users</button>'
+    + '</div>';
+}
+
+function editUserPassword(idx) {
+  var users = AUTH.getUsers();
+  var user = users[idx];
+  if (!user) return;
+  document.getElementById('pwd-edit-card').style.display = 'block';
+  document.getElementById('pwd-edit-title').innerHTML = '<span class="ct-icon">✏️</span>Change — ' + user.name;
+  document.getElementById('pwd-uname').value = user.username;
+  document.getElementById('pwd-new').value = '';
+  document.getElementById('pwd-confirm').value = '';
+  document.getElementById('pwd-user-idx').value = idx;
+  var el=document.getElementById('pwd-edit-card'); if(el) el.scrollIntoView({behavior:'smooth'});
+}
+
+function savePassword() {
+  var idx = parseInt(document.getElementById('pwd-user-idx').value);
+  var uname = document.getElementById('pwd-uname').value.trim();
+  var newPwd = document.getElementById('pwd-new').value;
+  var confirm = document.getElementById('pwd-confirm').value;
+  if (!uname) { showToast('Username உள்ளிடவும்', 'error'); return; }
+  if (!newPwd) { showToast('Password உள்ளிடவும்', 'error'); return; }
+  if (newPwd !== confirm) { showToast('Passwords match ஆகல!', 'error'); return; }
+  if (newPwd.length < 4) { showToast('Minimum 4 characters வேண்டும்', 'error'); return; }
+  var users = AUTH.getUsers();
+  if (users[idx]) {
+    users[idx].username = uname;
+    users[idx].password = newPwd;
+    AUTH.saveUsers(users);
+    // Also update login dropdown
+    populateLoginDropdown();
+    showToast(users[idx].name + ' password updated!', 'success');
+    document.getElementById('pwd-edit-card').style.display = 'none';
+    if(typeof showMasterDetail==='function') showMasterDetail('password'); // refresh
+  }
+}
+
+function syncCCUsers() {
+  var existing = AUTH.getUsers();
+  var centers = MasterDB.getCCCenters();
+  // Remove old CC users
+  var dairyUsers = existing.filter(function(u) { return u.role === 'dairy'; });
+  // Add CC users from centers
+  centers.forEach(function(cc) {
+    var found = existing.find(function(u) { return u.id === cc.id; });
+    dairyUsers.push(found || {
+      id: cc.id, role: 'cc', name: cc.name,
+      username: cc.id, password: 'cc123', canEdit: true,
+    });
+  });
+  AUTH.saveUsers(dairyUsers);
+  populateLoginDropdown();
+  showToast('CC users synced! ' + centers.length + ' CCs', 'success');
+  if(typeof showMasterDetail==='function') showMasterDetail('password');
+}
+
+// ==================== MOBILE APP v2 — Edit/Delete + Search Select + Themes ====================
+
+var currentRole = null;
+var currentPage = null;
+var _editState = {};
+
+function getCCList(){ return (DB._get('cc_centers')||[]).map(function(c){return{id:c.id,name:c.name};}); }
+
+function getFeedTypeOpts(sel){
+  var types=MasterDB.getFeedTypes();
+  if(!types||!types.length) return '<option value="">-- Feed Type add செய்யுங்கள் --</option>';
+  return types.map(function(ft){return '<option value="'+ft.name+'"'+(sel===ft.name?' selected':'')+'>'+ft.name+'</option>';}).join('');
+}
+
+// ---- Searchable dropdown options builders ----
+function vendorOptions(){
+  return DB.getVendors().map(function(v){return{value:v.id,label:v.name,sub:v.phone||'',extra:v.name};});
+}
+function ccOptions(){
+  return getCCList().map(function(c){return{value:c.id,label:c.name};});
+}
+function feedTypeOptions(){
+  return MasterDB.getFeedTypes().map(function(f){return{value:f.name,label:f.name,sub:f.unit||'Bag'};});
+}
+function societyOptions(cc){
+  return DB.getSocieties(cc).map(function(s){return{value:s.id,label:s.no+' — '+s.name,sub:s.village||'',extra:s.no+'|'+s.name};});
+}
+function vehicleOptions(){
+  return DB.getVehicles().map(function(v){return{value:v.no,label:v.no,sub:v.driver||''};});
+}
+
+function populateLoginDropdown(){
+  // Login is now username+password — no dropdown needed
+  // Just ensure the login hint is correct
+  var hint=document.getElementById('login-hint');
+  if(hint) hint.textContent='Username மற்றும் Password உள்ளிடுங்கள்';
+}
+
+function updateLoginHint(){}
+
 function doLogin(){
-  var lt=document.getElementById('lt').value;
   var uname=(document.getElementById('uname').value||'').trim();
+  var pwd=(document.getElementById('upwd').value||'');
   if(!uname){showToast('Username உள்ளிடவும்','error');return;}
-  currentRole=lt;
+  if(!pwd){showToast('Password உள்ளிடவும்','error');return;}
+  var result=AUTH.login(uname,pwd);
+  if(!result.ok){showToast(result.error,'error');
+    document.getElementById('upwd').value='';
+    document.getElementById('upwd').style.borderColor='var(--red)';
+    setTimeout(function(){document.getElementById('upwd').style.borderColor='';},1500);
+    return;
+  }
+  var user=result.user;
+  AUTH.currentUser=user;
+  currentRole=user.id;
   document.getElementById('login-screen').style.display='none';
-  var app=document.getElementById('app');
-  app.classList.add('active');
-  var label=lt==='dairy'?'Main Dairy':(getCCList().find(function(c){return c.id===lt;})||{}).name||lt;
-  document.getElementById('role-badge').textContent=label;
-  var av=document.getElementById('user-avatar');
-  av.textContent=uname[0].toUpperCase();
-  buildNav(lt);
+  document.getElementById('app').classList.add('active');
+  document.getElementById('role-badge').textContent=user.name;
+  document.getElementById('user-avatar').textContent=user.name[0].toUpperCase();
+  buildNav(user.role==='dairy'?'dairy':user.id);
 }
 
 function doLogout(){
-  currentRole=null;
+  currentRole=null; _editState={}; AUTH.currentUser=null;
   document.getElementById('app').classList.remove('active');
   document.getElementById('login-screen').style.display='flex';
+  document.getElementById('uname').value='';
+  document.getElementById('upwd').value='';
   populateLoginDropdown();
 }
 
 function openSettings(){ document.getElementById('settings-panel').classList.add('open'); }
 function closeSettings(){ document.getElementById('settings-panel').classList.remove('open'); }
 
-// ---- Bottom Nav ----
 function buildNav(role){
   var nav=document.getElementById('bottom-nav');
-  var items = role==='dairy'?[
+  if(!nav) return;
+  var items=role==='dairy'?[
     {icon:'📊',label:'Overview',  page:'d-overview'},
     {icon:'🛒',label:'Purchase',  page:'d-purchase'},
     {icon:'🚚',label:'Dispatch',  page:'d-dispatch'},
@@ -1321,35 +1861,47 @@ function buildNav(role){
   ];
   nav.innerHTML=items.map(function(it,idx){
     return '<div class="nav-item'+(idx===0?' active':'')+'" onclick="navTo(\''+it.page+'\',this)" data-page="'+it.page+'">'
-      +'<div class="nav-active-bar"></div>'
-      +'<div class="nav-icon">'+it.icon+'</div>'
-      +'<div class="nav-label">'+it.label+'</div>'
-      +'</div>';
+      +'<div class="nav-active-bar"></div><div class="nav-icon">'+it.icon+'</div>'
+      +'<div class="nav-label">'+it.label+'</div></div>';
   }).join('');
   showPage(items[0].page);
 }
 
 function navTo(pageId,el){
   document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
-  el.classList.add('active');
+  if(el) el.classList.add('active');
+  _editState={};
   showPage(pageId);
 }
 
 function showPage(pageId){
   currentPage=pageId;
   var ma=document.getElementById('main-area');
+  if(!ma) return;
   var fn=PAGES[pageId];
-  ma.innerHTML=fn?fn(currentRole):'<div class="empty-state"><span class="empty-icon">🔧</span>Coming soon</div>';
+  try {
+    ma.innerHTML=fn?fn(currentRole):'';
+  } catch(e) {
+    ma.innerHTML='<div class="empty-state"><span class="empty-icon">⚠️</span>Page load error. Try again.</div>';
+    console.error('showPage error:', e);
+  }
   ma.scrollTop=0;
+  setTimeout(function(){
+    document.querySelectorAll('[data-ss-id]').forEach(function(el){
+      var id=el.dataset.ssId;
+      var opts=window['_ssOpts_'+id];
+      if(opts) initSS(id,opts);
+    });
+  },50);
 }
 
 // ---- Helpers ----
 function fmt(n){return Number(n||0).toLocaleString('en-IN');}
-function fmtDate(d){if(!d)return'-';try{return new Date(d).toLocaleDateString('en-IN',{day:'2-digit',month:'short'})}catch(e){return d;}}
+function fmtDate(d){if(!d)return'-';try{return new Date(d).toLocaleDateString('en-IN',{day:'2-digit',month:'short'});}catch(e){return d;}}
 function today(){return new Date().toISOString().split('T')[0];}
-function v(id){return (document.getElementById(id)||{}).value||'';}
+function v(id){return(document.getElementById(id)||{}).value||'';}
 function num(x){return parseFloat(x)||0;}
-function badge(t,type){return '<span class="badge badge-'+(type||'gold')+'">'+t+'</span>';}
+function badge(t,type){return'<span class="badge badge-'+(type||'gold')+'">'+t+'</span>';}
 function statusBadge(val,low,warn){
   if(val<=low) return badge('LOW ⚠️','red');
   if(val<=warn) return badge('WARN','amber');
@@ -1357,45 +1909,44 @@ function statusBadge(val,low,warn){
 }
 function showToast(msg,type){
   var w=document.getElementById('toast');
-  var t=document.createElement('div');
-  t.className='toast-item '+(type||'info');
-  t.textContent=msg;
-  w.appendChild(t);
+  var t=document.createElement('div'); t.className='toast-item '+(type||'info'); t.textContent=msg; w.appendChild(t);
   setTimeout(function(){t.style.opacity='0';t.style.transition='opacity .3s';setTimeout(function(){t.remove();},300);},2800);
 }
 
-// ==================== PAGE RENDERERS ====================
+// Edit/delete action buttons HTML
+function actionBtns(editFn, deleteFn){
+  return '<td style="white-space:nowrap">'
+    +'<button onclick="'+editFn+'" style="background:rgba(30,136,229,.15);border:1px solid rgba(30,136,229,.3);color:var(--blue2);padding:5px 10px;border-radius:7px;font-size:11px;cursor:pointer;margin-right:4px">✏️</button>'
+    +'<button onclick="'+deleteFn+'" style="background:rgba(255,82,82,.12);border:1px solid rgba(255,82,82,.3);color:var(--red);padding:5px 10px;border-radius:7px;font-size:11px;cursor:pointer">🗑️</button>'
+    +'</td>';
+}
+
+// ==================== PAGES ====================
 var PAGES = {};
 
 // ---- DAIRY OVERVIEW ----
 PAGES['d-overview'] = function(){
-  var bal=DB.getDairyBalance();
-  var purchases=DB.getPurchases();
-  var allotments=DB.getAllotments();
-  var settings=DB.getAlertSettings();
-  var ccList=getCCList();
-  var totalPurchased=purchases.reduce(function(s,p){return s+num(p.qty);},0);
-  var totalAllotted=allotments.reduce(function(s,a){return s+num(a.qty);},0);
+  var bal=DB.getDairyBalance(), purchases=DB.getPurchases(), allotments=DB.getAllotments();
+  var settings=DB.getAlertSettings(), ccList=getCCList();
+  var totalP=purchases.reduce(function(s,p){return s+num(p.qty);},0);
+  var totalA=allotments.reduce(function(s,a){return s+num(a.qty);},0);
   var alerts=ccList.map(function(cc){
     var stock=DB.getCCStock(cc.id);
-    return {cc:cc.name,stock:stock,low:stock<=settings.lowStock,warn:stock<=settings.warnStock&&stock>settings.lowStock};
+    return{cc:cc.name,stock:stock,low:stock<=settings.lowStock,warn:stock<=settings.warnStock&&stock>settings.lowStock};
   }).filter(function(a){return a.low||a.warn;});
-
   var ccRows=ccList.map(function(cc){
-    var stock=DB.getCCStock(cc.id);
-    var bal2=DB.getCCBalance(cc.id);
-    return '<tr><td><strong>'+cc.name+'</strong></td><td>'+stock+'</td><td>₹'+fmt(bal2)+'</td><td>'+statusBadge(stock,settings.lowStock,settings.warnStock)+'</td></tr>';
+    var stock=DB.getCCStock(cc.id),bal2=DB.getCCBalance(cc.id);
+    return'<tr><td><strong>'+cc.name+'</strong></td><td>'+stock+'</td><td>₹'+fmt(bal2)+'</td><td>'+statusBadge(stock,settings.lowStock,settings.warnStock)+'</td></tr>';
   }).join('');
-
   return '<div class="page-title"><span class="pt-icon">📊</span>Overview</div>'
     +'<div class="stat-grid">'
     +'<div class="stat-card gold shimmer"><div class="stat-lbl">Dairy Balance</div><div class="stat-val gold">₹'+fmt(bal)+'</div><div class="stat-sub">Available</div></div>'
-    +'<div class="stat-card"><div class="stat-lbl">Purchased</div><div class="stat-val">'+fmt(totalPurchased)+'</div><div class="stat-sub">Bags total</div></div>'
-    +'<div class="stat-card"><div class="stat-lbl">Allotted</div><div class="stat-val amber">'+fmt(totalAllotted)+'</div><div class="stat-sub">To CCs</div></div>'
-    +'<div class="stat-card"><div class="stat-lbl">Stock Alerts</div><div class="stat-val red">'+alerts.length+'</div><div class="stat-sub">CCs low</div></div>'
+    +'<div class="stat-card"><div class="stat-lbl">Purchased</div><div class="stat-val">'+fmt(totalP)+'</div><div class="stat-sub">Total Bags</div></div>'
+    +'<div class="stat-card"><div class="stat-lbl">Allotted</div><div class="stat-val amber">'+fmt(totalA)+'</div><div class="stat-sub">To CCs</div></div>'
+    +'<div class="stat-card"><div class="stat-lbl">Alerts</div><div class="stat-val red">'+alerts.length+'</div><div class="stat-sub">CCs low</div></div>'
     +'</div>'
-    +(ccList.length===0?'<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>CC Centers இல்லை! Masters → CC Center-ல் add செய்யுங்கள்</div></div>':'')
-    +alerts.map(function(a){return '<div class="alert alert-'+(a.low?'danger':'warn')+'"><span class="alert-icon">'+(a.low?'🚨':'⚠️')+'</span><div><strong>'+a.cc+'</strong> — '+a.stock+' bags '+(a.low?'CRITICAL!':'warning level')+'</div></div>';}).join('')
+    +(ccList.length===0?'<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>CC Centers இல்லை! Masters → CC-ல் add செய்யுங்கள்</div></div>':'')
+    +alerts.map(function(a){return'<div class="alert alert-'+(a.low?'danger':'warn')+'"><span class="alert-icon">'+(a.low?'🚨':'⚠️')+'</span><div><strong>'+a.cc+'</strong>: '+a.stock+' bags '+(a.low?'CRITICAL!':'warning')+'</div></div>';}).join('')
     +'<div class="card"><div class="card-title"><span class="ct-icon">🏪</span>CC-wise Stock</div>'
     +(ccList.length===0?'<div class="empty-state"><span class="empty-icon">🏪</span>No CC Centers</div>'
       :'<div class="tbl-wrap"><table><thead><tr><th>CC</th><th>Stock</th><th>Balance</th><th>Status</th></tr></thead><tbody>'+ccRows+'</tbody></table></div>')
@@ -1403,217 +1954,220 @@ PAGES['d-overview'] = function(){
     +'<div class="card"><div class="card-title"><span class="ct-icon">🛒</span>Recent Purchases</div>'
     +(purchases.length===0?'<div class="empty-state"><span class="empty-icon">📦</span>No purchases yet</div>'
       :'<div class="tbl-wrap"><table><thead><tr><th>Date</th><th>Vendor</th><th>Qty</th><th>Total</th></tr></thead><tbody>'
-      +purchases.slice(0,8).map(function(p){return '<tr><td>'+fmtDate(p.date)+'</td><td>'+p.vendorName+'</td><td>'+p.qty+'</td><td>₹'+fmt(p.total)+'</td></tr>';}).join('')
-      +'</tbody></table></div>')
-    +'</div>';
+      +purchases.slice(0,6).map(function(p){return'<tr><td>'+fmtDate(p.date)+'</td><td>'+p.vendorName+'</td><td>'+p.qty+'</td><td>₹'+fmt(p.total)+'</td></tr>';}).join('')
+      +'</tbody></table></div>')+'</div>';
 };
 
-// ---- VENDOR PURCHASE ----
+// ---- VENDOR PURCHASE (with search select + edit/delete) ----
 PAGES['d-purchase'] = function(){
-  var vendors=DB.getVendors();
   var purchases=DB.getPurchases();
-  var vOpts=vendors.map(function(v){return '<option value="'+v.id+'" data-name="'+v.name+'">'+v.name+'</option>';}).join('');
-  var rows=purchases.slice(0,15).map(function(p){
-    return '<tr><td>'+fmtDate(p.date)+'</td><td>'+p.vendorName+'</td><td>'+p.feedType+'</td><td>'+p.qty+'</td><td>₹'+fmt(p.total)+'</td></tr>';
+  var editing=_editState.purchase?purchases.find(function(x){return x.id===_editState.purchase;}):null;
+  var vOpts=vendorOptions(), ftOpts=feedTypeOptions();
+  window['_ssOpts_p-vendor']=vOpts;
+  window['_ssOpts_p-type']=ftOpts;
+  var rows=purchases.slice(0,20).map(function(p){
+    return'<tr><td>'+fmtDate(p.date)+'</td><td>'+p.vendorName+'</td><td>'+p.feedType+'</td><td>'+p.qty+'</td><td>₹'+fmt(p.total)+'</td>'
+      +actionBtns('editPurchase(\''+p.id+'\')','deletePurchase(\''+p.id+'\')')+'</tr>';
   }).join('');
   return '<div class="page-title"><span class="pt-icon">🛒</span>Vendor Purchase</div>'
-    +'<div class="card"><div class="card-title"><span class="ct-icon">➕</span>New Purchase</div>'
-    +'<div class="form-group"><label>Date</label><input type="date" id="p-date" value="'+today()+'"></div>'
-    +'<div class="form-group"><label>Vendor *</label><select id="p-vendor"><option value="">-- Select Vendor --</option>'+vOpts+'</select></div>'
-    +'<div class="form-group"><label>Feed Type</label><select id="p-type">'+getFeedTypeOpts('')+'</select></div>'
-    +'<div class="form-group"><label>Invoice No.</label><input type="text" id="p-inv" placeholder="INV-2025-001"></div>'
-    +'<div class="form-group"><label>Quantity (Bags)</label><input type="number" id="p-qty" placeholder="50" inputmode="numeric" oninput="calcPurchase()"></div>'
-    +'<div class="form-group"><label>Rate per Bag (₹)</label><input type="number" id="p-rate" placeholder="450" inputmode="numeric" oninput="calcPurchase()"></div>'
-    +'<div class="form-group"><label>Total Amount (₹)</label><input type="number" id="p-total" readonly style="opacity:.7"></div>'
-    +'<div class="btn-row"><button class="btn btn-gold btn-full" onclick="savePurchase()">💾 Save Purchase</button></div>'
-    +'</div>'
+    +'<div class="card">'
+    +'<div class="card-title" id="purchase-form-title"><span class="ct-icon">'+(editing?'✏️':'➕')+'</span>'+(editing?'Edit Purchase':'New Purchase')+'</div>'
+    +'<div class="form-group"><label>Date</label><input type="date" id="p-date" value="'+(editing?editing.date:today())+'"></div>'
+    +'<div class="form-group"><label>Vendor *</label>'
+    +searchSelect({id:'p-vendor',options:vOpts,placeholder:'Vendor தேடுங்கள்...',selected:editing?{value:editing.vendorId||'',label:editing.vendorName||''}:{}})+' </div>'
+    +'<div class="form-group"><label>Feed Type *</label>'
+    +searchSelect({id:'p-type',options:ftOpts,placeholder:'Feed Type தேடுங்கள்...',selected:editing?{value:editing.feedType,label:editing.feedType}:{}})+' </div>'
+    +'<div class="form-group"><label>Invoice No.</label><input type="text" id="p-inv" value="'+(editing?editing.invoice||'':'')+'" placeholder="INV-2025-001"></div>'
+    +'<div class="form-group"><label>Quantity (Bags)</label><input type="number" id="p-qty" value="'+(editing?editing.qty||'':'')+'" placeholder="50" inputmode="numeric" oninput="calcPurchase()"></div>'
+    +'<div class="form-group"><label>Rate per Bag (₹)</label><input type="number" id="p-rate" value="'+(editing?editing.rate||'':'')+'" placeholder="450" inputmode="numeric" oninput="calcPurchase()"></div>'
+    +'<div class="form-group"><label>Total (₹)</label><input type="number" id="p-total" value="'+(editing?editing.total||'':'')+'" readonly style="opacity:.7"></div>'
+    +'<div class="btn-row">'
+    +(editing?'<button class="btn btn-ghost" onclick="_editState.purchase=null;showPage(\'d-purchase\')">Cancel</button>':'')
+    +'<button class="btn btn-gold" id="purchase-save-btn" style="flex:1;justify-content:center" onclick="savePurchase()">'+(editing?'Update Purchase ✓':'💾 Save Purchase')+'</button>'
+    +'</div></div>'
     +'<div class="card"><div class="card-title"><span class="ct-icon">📋</span>History</div>'
     +(purchases.length===0?'<div class="empty-state"><span class="empty-icon">📦</span>No purchases yet</div>'
-      :'<div class="tbl-wrap"><table><thead><tr><th>Date</th><th>Vendor</th><th>Type</th><th>Qty</th><th>Total</th></tr></thead><tbody>'+rows+'</tbody></table></div>')
+      :'<div class="tbl-wrap"><table><thead><tr><th>Date</th><th>Vendor</th><th>Type</th><th>Qty</th><th>Total</th><th>Action</th></tr></thead><tbody>'+rows+'</tbody></table></div>')
     +'</div>';
 };
 
-// ---- CC DISPATCH ----
+// ---- CC DISPATCH (with search select + edit/delete) ----
 PAGES['d-dispatch'] = function(){
-  var ccList=getCCList();
-  var allotments=DB.getAllotments();
-  var veh=DB.getVehicles();
-  var ccOpts=ccList.map(function(c){return '<option value="'+c.id+'">'+c.name+'</option>';}).join('');
-  var vehOpts='<option value="">-- Vehicle --</option>'+veh.map(function(v){return '<option>'+v.no+'</option>';}).join('');
-  var rows=allotments.slice(0,12).map(function(a){
-    return '<tr><td>'+fmtDate(a.date)+'</td><td>'+a.ccName+'</td><td>'+a.feedType+'</td><td>'+a.qty+'</td><td>'+badge(a.vehicle,'blue')+'</td></tr>';
+  var allotments=DB.getAllotments(), ccOpts=ccOptions(), ftOpts=feedTypeOptions(), vehOpts=vehicleOptions();
+  var editing=_editState.allotment?allotments.find(function(x){return x.id===_editState.allotment;}):null;
+  window['_ssOpts_al-cc']=ccOpts;
+  window['_ssOpts_al-type']=ftOpts;
+  window['_ssOpts_al-veh']=vehOpts;
+  var rows=allotments.slice(0,20).map(function(a){
+    return'<tr><td>'+fmtDate(a.date)+'</td><td>'+a.ccName+'</td><td>'+a.feedType+'</td><td>'+a.qty+'</td><td>'+badge(a.vehicle,'blue')+'</td>'
+      +actionBtns('editAllotment(\''+a.id+'\')','deleteAllotment(\''+a.id+'\')')+'</tr>';
   }).join('');
   return '<div class="page-title"><span class="pt-icon">🚚</span>CC Dispatch</div>'
-    +'<div class="card"><div class="card-title"><span class="ct-icon">➕</span>New Allocation</div>'
-    +'<div class="form-group"><label>Date</label><input type="date" id="al-date" value="'+today()+'"></div>'
-    +'<div class="form-group"><label>CC Center *</label><select id="al-cc"><option value="">-- Select CC --</option>'+ccOpts+'</select></div>'
-    +'<div class="form-group"><label>Feed Type</label><select id="al-type">'+getFeedTypeOpts('')+'</select></div>'
-    +'<div class="form-group"><label>Vehicle</label><select id="al-veh">'+vehOpts+'</select></div>'
-    +'<div class="form-group"><label>Vehicle (Manual)</label><input type="text" id="al-veh2" placeholder="TN XX AB 1234"></div>'
-    +'<div class="form-group"><label>Quantity (Bags)</label><input type="number" id="al-qty" placeholder="30" inputmode="numeric" oninput="calcAllotment()"></div>'
-    +'<div class="form-group"><label>Rate to CC (₹)</label><input type="number" id="al-rate" placeholder="460" inputmode="numeric" oninput="calcAllotment()"></div>'
-    +'<div class="form-group"><label>Total (₹)</label><input type="number" id="al-total" readonly style="opacity:.7"></div>'
-    +'<div class="btn-row"><button class="btn btn-gold btn-full" onclick="saveAllotment()">🚚 Send to CC</button></div>'
-    +'</div>'
+    +'<div class="card">'
+    +'<div class="card-title"><span class="ct-icon">'+(editing?'✏️':'➕')+'</span>'+(editing?'Edit Dispatch':'New Allocation')+'</div>'
+    +'<div class="form-group"><label>Date</label><input type="date" id="al-date" value="'+(editing?editing.date:today())+'"></div>'
+    +'<div class="form-group"><label>CC Center *</label>'
+    +searchSelect({id:'al-cc',options:ccOpts,placeholder:'CC தேடுங்கள்...',selected:editing?{value:editing.cc,label:editing.ccName}:{}})+' </div>'
+    +'<div class="form-group"><label>Feed Type *</label>'
+    +searchSelect({id:'al-type',options:ftOpts,placeholder:'Feed Type தேடுங்கள்...',selected:editing?{value:editing.feedType,label:editing.feedType}:{}})+' </div>'
+    +'<div class="form-group"><label>Vehicle</label>'
+    +searchSelect({id:'al-veh',options:vehOpts,placeholder:'Vehicle தேடுங்கள்...',selected:editing?{value:editing.vehicle,label:editing.vehicle}:{}})+' </div>'
+    +'<div class="form-group"><label>Vehicle (Manual Entry)</label><input type="text" id="al-veh2" value="'+(editing?editing.vehicle||'':'')+'" placeholder="TN XX AB 1234"></div>'
+    +'<div class="form-group"><label>Quantity (Bags)</label><input type="number" id="al-qty" value="'+(editing?editing.qty||'':'')+'" placeholder="30" inputmode="numeric" oninput="calcAllotment()"></div>'
+    +'<div class="form-group"><label>Rate (₹)</label><input type="number" id="al-rate" value="'+(editing?editing.rate||'':'')+'" placeholder="460" inputmode="numeric" oninput="calcAllotment()"></div>'
+    +'<div class="form-group"><label>Total (₹)</label><input type="number" id="al-total" value="'+(editing?editing.total||'':'')+'" readonly style="opacity:.7"></div>'
+    +'<div class="btn-row">'
+    +(editing?'<button class="btn btn-ghost" onclick="_editState.allotment=null;showPage(\'d-dispatch\')">Cancel</button>':'')
+    +'<button class="btn btn-gold" id="dispatch-save-btn" style="flex:1;justify-content:center" onclick="saveAllotment()">'+(editing?'Update ✓':'🚚 Send to CC')+'</button>'
+    +'</div></div>'
     +'<div class="card"><div class="card-title"><span class="ct-icon">📋</span>History</div>'
     +(allotments.length===0?'<div class="empty-state"><span class="empty-icon">🚚</span>No dispatches yet</div>'
-      :'<div class="tbl-wrap"><table><thead><tr><th>Date</th><th>CC</th><th>Type</th><th>Qty</th><th>Vehicle</th></tr></thead><tbody>'+rows+'</tbody></table></div>')
+      :'<div class="tbl-wrap"><table><thead><tr><th>Date</th><th>CC</th><th>Type</th><th>Qty</th><th>Vehicle</th><th>Action</th></tr></thead><tbody>'+rows+'</tbody></table></div>')
     +'</div>';
 };
 
-// ---- DAIRY REPORTS ----
+// ---- REPORTS ----
 PAGES['d-reports'] = function(){
+  var settings=DB.getAlertSettings();
   return '<div class="page-title"><span class="pt-icon">📈</span>Reports</div>'
     +'<div class="card"><div class="card-title"><span class="ct-icon">🔍</span>Filter</div>'
     +'<div class="filter-row">'
     +'<div class="form-group" style="margin:0"><label>From</label><input type="date" id="rpt-from" value="'+today().slice(0,8)+'01"></div>'
     +'<div class="form-group" style="margin:0"><label>To</label><input type="date" id="rpt-to" value="'+today()+'"></div>'
     +'</div>'
-    +'<div class="form-group" style="margin-top:10px"><label>Type</label><select id="rpt-type"><option value="summary">Summary</option><option value="vendor">Vendor-wise</option><option value="cc">CC-wise</option></select></div>'
-    +'<button class="btn btn-primary btn-full" style="margin-top:8px" onclick="generateMobileReport()">Generate ▶</button>'
-    +'</div>'
+    +'<div class="form-group" style="margin-top:10px"><label>Type</label>'
+    +'<select id="rpt-type"><option value="summary">Summary</option><option value="vendor">Vendor-wise</option><option value="cc">CC-wise</option></select></div>'
+    +'<button class="btn btn-primary btn-full" style="margin-top:8px" onclick="generateReport()">Generate ▶</button></div>'
     +'<div id="rpt-out"></div>'
-    // Alerts section
-    +'<div class="card"><div class="card-title"><span class="ct-icon">🔔</span>Stock Alerts</div>'
-    +renderAlertsList()
-    +'</div>'
+    +'<div class="card"><div class="card-title"><span class="ct-icon">🔔</span>Stock Alerts</div>'+renderAlertsList()+'</div>'
     +'<div class="card"><div class="card-title"><span class="ct-icon">⚙️</span>Alert Settings</div>'
-    +'<div class="form-group"><label>Low Stock (Bags)</label><input type="number" id="as-low" value="'+(DB.getAlertSettings().lowStock)+'" inputmode="numeric"></div>'
-    +'<div class="form-group"><label>Warning Level (Bags)</label><input type="number" id="as-warn" value="'+(DB.getAlertSettings().warnStock)+'" inputmode="numeric"></div>'
-    +'<div class="form-group"><label>Alert Phone</label><input type="tel" id="as-phone" value="'+(DB.getAlertSettings().phone||'')+'" placeholder="9876543210" inputmode="tel"></div>'
-    +'<button class="btn btn-success btn-full" style="margin-top:4px" onclick="saveAlertSettings()">Save Settings ✓</button>'
-    +'</div>';
+    +'<div class="form-group"><label>Low Stock (Bags)</label><input type="number" id="as-low" value="'+settings.lowStock+'" inputmode="numeric"></div>'
+    +'<div class="form-group"><label>Warning Level (Bags)</label><input type="number" id="as-warn" value="'+settings.warnStock+'" inputmode="numeric"></div>'
+    +'<div class="form-group"><label>Alert Phone</label><input type="tel" id="as-phone" value="'+(settings.phone||'')+'" placeholder="9876543210"></div>'
+    +'<button class="btn btn-success btn-full" style="margin-top:4px" onclick="saveAlertSettings()">Save ✓</button></div>';
 };
 
 function renderAlertsList(){
-  var settings=DB.getAlertSettings();
-  var ccList=getCCList();
+  var settings=DB.getAlertSettings(), ccList=getCCList();
   if(!ccList.length) return '<div class="empty-state"><span class="empty-icon">🏪</span>No CC Centers</div>';
   return ccList.map(function(cc){
     var stock=DB.getCCStock(cc.id);
     var type=stock<=settings.lowStock?'danger':stock<=settings.warnStock?'warn':'success';
-    var icon=stock<=settings.lowStock?'🚨':stock<=settings.warnStock?'⚠️':'✅';
-    return '<div class="alert alert-'+type+'"><span class="alert-icon">'+icon+'</span><div><strong>'+cc.name+'</strong>: '+stock+' bags</div></div>';
+    return'<div class="alert alert-'+type+'"><span class="alert-icon">'+(stock<=settings.lowStock?'🚨':stock<=settings.warnStock?'⚠️':'✅')+'</span><div><strong>'+cc.name+'</strong>: '+stock+' bags</div></div>';
   }).join('');
 }
 
 // ---- MASTERS HOME ----
 PAGES['d-masters'] = function(){
   var tiles=[
-    {key:'vendor',  icon:'🏭',label:'Vendor Master',  count:DB.getVendors().length},
-    {key:'society', icon:'🏘️',label:'Society Master', count:(DB._get('societies')||[]).length},
-    {key:'vehicle', icon:'🚛',label:'Vehicle Master',  count:DB.getVehicles().length},
-    {key:'driver',  icon:'👤',label:'Driver Master',   count:MasterDB.getDrivers().length},
-    {key:'feedtype',icon:'🌾',label:'Feed Types',      count:MasterDB.getFeedTypes().length},
-    {key:'cc',      icon:'🏪',label:'CC Centers',      count:MasterDB.getCCCenters().length},
+    {key:'vendor',  icon:'🏭',label:'Vendor',    count:DB.getVendors().length},
+    {key:'society', icon:'🏘️',label:'Society',   count:(DB._get('societies')||[]).length},
+    {key:'vehicle', icon:'🚛',label:'Vehicle',    count:DB.getVehicles().length},
+    {key:'driver',  icon:'👤',label:'Driver',     count:MasterDB.getDrivers().length},
+    {key:'feedtype',icon:'🌾',label:'Feed Types', count:MasterDB.getFeedTypes().length},
+    {key:'cc',      icon:'🏪',label:'CC Centers', count:MasterDB.getCCCenters().length},
+    {key:'password',icon:'🔑',label:'Passwords',  count:AUTH.getUsers().length},
   ];
   return '<div class="page-title"><span class="pt-icon">🗂️</span>Masters</div>'
-    +'<div class="master-grid">'
-    +tiles.map(function(t){
-      return '<div class="master-tile" onclick="showMasterDetail(\''+t.key+'\')">'
-        +'<div class="mt-bar"></div>'
-        +'<span class="mt-icon">'+t.icon+'</span>'
-        +'<div class="mt-label">'+t.label+'</div>'
-        +'<div class="mt-count">'+t.count+' records</div>'
-        +'</div>';
-    }).join('')
-    +'</div>';
+    +'<div class="master-grid">'+tiles.map(function(t){
+      return'<div class="master-tile" onclick="showMasterDetail(\''+t.key+'\')">'
+        +'<div class="mt-bar"></div><span class="mt-icon">'+t.icon+'</span>'
+        +'<div class="mt-label">'+t.label+'</div><div class="mt-count">'+t.count+' records</div></div>';
+    }).join('')+'</div>';
 };
 
 function showMasterDetail(key){
   var ma=document.getElementById('main-area');
-  var fn={vendor:renderVendorMaster,society:renderSocietyMaster,vehicle:renderVehicleMaster,driver:renderDriverMaster,feedtype:renderFeedTypeMaster,cc:renderCCMaster};
-  if(fn[key]) ma.innerHTML=fn[key]();
-  ma.scrollTop=0;
+  if(!ma) return;
+  var fn={vendor:renderVendorMaster,society:renderSocietyMaster,vehicle:renderVehicleMaster,driver:renderDriverMaster,feedtype:renderFeedTypeMaster,cc:renderCCMaster,password:renderPasswordManager};
+  if(fn[key]){ try{ ma.innerHTML=fn[key](); }catch(e){ma.innerHTML='<div class="empty-state"><span class="empty-icon">⚠️</span>Error loading. Try again.</div>';console.error(e);} ma.scrollTop=0;
+    setTimeout(function(){document.querySelectorAll('[data-ss-id]').forEach(function(el){var id=el.dataset.ssId;var opts=window['_ssOpts_'+id];if(opts)initSS(id,opts);});},50);
+  }
 }
 
 // ---- CC PAGES ----
 PAGES['cc-dashboard'] = function(cc){
-  var stock=DB.getCCStock(cc);
-  var bal=DB.getCCBalance(cc);
-  var settings=DB.getAlertSettings();
+  var stock=DB.getCCStock(cc), bal=DB.getCCBalance(cc), settings=DB.getAlertSettings();
   var ccName=(getCCList().find(function(c){return c.id===cc;})||{}).name||cc;
-  var issues=DB.getCCIssues(cc);
-  var receipts=DB.getCCReceipts(cc);
+  var issues=DB.getCCIssues(cc), receipts=DB.getCCReceipts(cc);
   var totalR=receipts.reduce(function(s,r){return s+num(r.net);},0);
   var totalI=issues.reduce(function(s,i){return s+num(i.qty);},0);
   var dmg=receipts.reduce(function(s,r){return s+num(r.damage);},0);
   return '<div class="page-title"><span class="pt-icon">📊</span>'+ccName+'</div>'
     +'<div class="stat-grid">'
-    +'<div class="stat-card '+(stock<=settings.lowStock?'':'')+(stock<=settings.lowStock?'red':stock<=settings.warnStock?'amber':'green')+' gold shimmer">'
-    +'<div class="stat-lbl">Stock</div><div class="stat-val '+(stock<=settings.lowStock?'red':stock<=settings.warnStock?'amber':'green')+'">'+stock+'</div><div class="stat-sub">Bags</div></div>'
-    +'<div class="stat-card gold"><div class="stat-lbl">Balance</div><div class="stat-val gold">₹'+fmt(bal)+'</div><div class="stat-sub">Available</div></div>'
-    +'<div class="stat-card"><div class="stat-lbl">Received</div><div class="stat-val green">'+totalR+'</div><div class="stat-sub">Total bags</div></div>'
-    +'<div class="stat-card"><div class="stat-lbl">Issued</div><div class="stat-val amber">'+totalI+'</div><div class="stat-sub">Total bags</div></div>'
+    +'<div class="stat-card gold shimmer"><div class="stat-lbl">Stock</div><div class="stat-val '+(stock<=settings.lowStock?'red':stock<=settings.warnStock?'amber':'green')+'">'+stock+'</div><div class="stat-sub">Bags</div></div>'
+    +'<div class="stat-card gold"><div class="stat-lbl">Balance</div><div class="stat-val gold">₹'+fmt(bal)+'</div></div>'
+    +'<div class="stat-card"><div class="stat-lbl">Received</div><div class="stat-val green">'+totalR+'</div><div class="stat-sub">Total</div></div>'
+    +'<div class="stat-card"><div class="stat-lbl">Issued</div><div class="stat-val amber">'+totalI+'</div><div class="stat-sub">Total</div></div>'
     +'</div>'
     +(stock<=settings.lowStock?'<div class="alert alert-danger"><span class="alert-icon">🚨</span><div>Stock Critical! Dairy-ல் தொடர்பு கொள்ளுங்கள்!</div></div>':'')
-    +(dmg>0?'<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>'+dmg+' bags damage recorded.</div></div>':'')
+    +(dmg>0?'<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>'+dmg+' bags damage recorded</div></div>':'')
     +'<div class="card"><div class="card-title"><span class="ct-icon">📋</span>Recent Issues</div>'
     +(issues.length===0?'<div class="empty-state"><span class="empty-icon">📭</span>No issues yet</div>'
-      :'<div class="tbl-wrap"><table><thead><tr><th>Date</th><th>Society</th><th>Bags</th><th>Vehicle</th></tr></thead><tbody>'
-      +issues.slice(0,6).map(function(i){return '<tr><td>'+fmtDate(i.date)+'</td><td>'+i.socName+'</td><td>'+i.qty+'</td><td>'+i.vehicle+'</td></tr>';}).join('')
-      +'</tbody></table></div>')
-    +'</div>';
+      :'<div class="tbl-wrap"><table><thead><tr><th>Date</th><th>Society</th><th>Bags</th></tr></thead><tbody>'
+      +issues.slice(0,6).map(function(i){return'<tr><td>'+fmtDate(i.date)+'</td><td>'+i.socName+'</td><td>'+i.qty+'</td></tr>';}).join('')
+      +'</tbody></table></div>')+'</div>';
 };
 
 PAGES['cc-receive'] = function(cc){
-  var receipts=DB.getCCReceipts(cc);
-  var rows=receipts.slice(0,12).map(function(r){
-    return '<tr><td>'+fmtDate(r.date)+'</td><td>'+r.vehicle+'</td><td>'+r.feedType+'</td><td>'+r.received+'</td>'
-      +'<td>'+(num(r.damage)>0?badge(r.damage,'red'):badge(0,'green'))+'</td><td><strong>'+r.net+'</strong></td></tr>';
+  var receipts=DB.getCCReceipts(cc), ftOpts=feedTypeOptions();
+  window['_ssOpts_rc-type']=ftOpts;
+  var rows=receipts.slice(0,15).map(function(r){
+    return'<tr><td>'+fmtDate(r.date)+'</td><td>'+r.vehicle+'</td><td>'+r.feedType+'</td><td>'+r.received+'</td>'
+      +'<td>'+(num(r.damage)>0?badge(r.damage,'red'):badge(0,'green'))+'</td><td>'+r.net+'</td>'
+      +'<td><button onclick="deleteReceipt(\''+cc+'\',\''+r.id+'\')" style="background:rgba(255,82,82,.12);border:1px solid rgba(255,82,82,.3);color:var(--red);padding:5px 9px;border-radius:7px;font-size:11px;cursor:pointer">🗑️</button></td></tr>';
   }).join('');
   return '<div class="page-title"><span class="pt-icon">📦</span>Feed Received</div>'
     +'<div class="card"><div class="card-title"><span class="ct-icon">➕</span>Record Receipt</div>'
     +'<div class="form-group"><label>Date</label><input type="date" id="rc-date" value="'+today()+'"></div>'
     +'<div class="form-group"><label>Vehicle No. *</label><input type="text" id="rc-veh" placeholder="TN 45 AB 1234"></div>'
-    +'<div class="form-group"><label>Feed Type</label><select id="rc-type">'+getFeedTypeOpts('')+'</select></div>'
+    +'<div class="form-group"><label>Feed Type *</label>'+searchSelect({id:'rc-type',options:ftOpts,placeholder:'Feed Type தேடுங்கள்...'})+'</div>'
     +'<div class="form-group"><label>Received (Bags)</label><input type="number" id="rc-recv" placeholder="30" inputmode="numeric" oninput="calcReceipt()"></div>'
-    +'<div class="form-group"><label>Damage / Shortage</label><input type="number" id="rc-dmg" placeholder="0" value="0" inputmode="numeric" oninput="calcReceipt()"></div>'
+    +'<div class="form-group"><label>Damage / Shortage</label><input type="number" id="rc-dmg" value="0" inputmode="numeric" oninput="calcReceipt()"></div>'
     +'<div class="form-group"><label>Net Good Bags</label><input type="number" id="rc-net" readonly style="opacity:.7"></div>'
     +'<div class="form-group"><label>Rate (₹/Bag)</label><input type="number" id="rc-rate" placeholder="460" inputmode="numeric"></div>'
     +'<div class="form-group"><label>Remarks</label><input type="text" id="rc-remarks" placeholder="Any notes..."></div>'
-    +'<div class="btn-row"><button class="btn btn-gold btn-full" onclick="saveReceipt(\''+cc+'\')">💾 Save Receipt</button></div>'
-    +'</div>'
-    +'<div class="card"><div class="card-title"><span class="ct-icon">📋</span>Receipt History</div>'
+    +'<div class="btn-row"><button class="btn btn-gold btn-full" onclick="saveReceipt(\''+cc+'\')">💾 Save Receipt</button></div></div>'
+    +'<div class="card"><div class="card-title"><span class="ct-icon">📋</span>History</div>'
     +(receipts.length===0?'<div class="empty-state"><span class="empty-icon">📭</span>No receipts yet</div>'
-      :'<div class="tbl-wrap"><table><thead><tr><th>Date</th><th>Vehicle</th><th>Type</th><th>Recd</th><th>Dmg</th><th>Net</th></tr></thead><tbody>'+rows+'</tbody></table></div>')
+      :'<div class="tbl-wrap"><table><thead><tr><th>Date</th><th>Vehicle</th><th>Type</th><th>Recd</th><th>Dmg</th><th>Net</th><th>Del</th></tr></thead><tbody>'+rows+'</tbody></table></div>')
     +'</div>';
 };
 
 PAGES['cc-issue'] = function(cc){
-  var societies=DB.getSocieties(cc);
-  var issues=DB.getCCIssues(cc);
-  var stock=DB.getCCStock(cc);
-  var socOpts=societies.map(function(s){return '<option value="'+s.id+'" data-no="'+s.no+'" data-name="'+s.name+'">'+s.no+' — '+s.name+'</option>';}).join('');
-  var rows=issues.slice(0,12).map(function(i){
-    return '<tr><td>'+fmtDate(i.date)+'</td><td>'+badge(i.socNo,'blue')+'</td><td>'+i.socName+'</td><td>'+i.qty+'</td><td>'+i.closing+'</td></tr>';
+  var societies=DB.getSocieties(cc), issues=DB.getCCIssues(cc), stock=DB.getCCStock(cc);
+  var socOpts=societyOptions(cc), ftOpts=feedTypeOptions();
+  window['_ssOpts_is-soc']=socOpts;
+  window['_ssOpts_is-type']=ftOpts;
+  var rows=issues.slice(0,15).map(function(i){
+    return'<tr><td>'+fmtDate(i.date)+'</td><td>'+badge(i.socNo,'blue')+'</td><td>'+i.socName+'</td><td>'+i.qty+'</td><td>'+i.closing+'</td>'
+      +'<td><button onclick="deleteIssue(\''+cc+'\',\''+i.id+'\')" style="background:rgba(255,82,82,.12);border:1px solid rgba(255,82,82,.3);color:var(--red);padding:5px 9px;border-radius:7px;font-size:11px;cursor:pointer">🗑️</button></td></tr>';
   }).join('');
   return '<div class="page-title"><span class="pt-icon">🏘️</span>Issue to Society</div>'
     +'<div class="alert alert-info"><span class="alert-icon">ℹ️</span><div>Current Stock: <strong>'+stock+' Bags</strong></div></div>'
     +'<div class="card"><div class="card-title"><span class="ct-icon">➕</span>New Issue</div>'
-    +(societies.length===0?'<div class="alert alert-warn"><span class="alert-icon">⚠️</span><div>No societies! Masters-ல் add செய்யுங்கள்.</div></div>':'')
     +'<div class="form-group"><label>Date</label><input type="date" id="is-date" value="'+today()+'"></div>'
-    +'<div class="form-group"><label>Society *</label><select id="is-soc" onchange="fillSociety()"><option value="">-- Select --</option>'+socOpts+'</select></div>'
-    +'<div class="form-group"><label>Society No.</label><input type="text" id="is-socno" readonly style="opacity:.7"></div>'
+    +'<div class="form-group"><label>Society *</label>'+searchSelect({id:'is-soc',options:socOpts,placeholder:'Society தேடுங்கள்...'})+'</div>'
+    +'<div class="form-group"><label>Society No.</label><input type="text" id="is-socno" readonly style="opacity:.7" placeholder="Auto fill"></div>'
     +'<div class="form-group"><label>Vehicle No. *</label><input type="text" id="is-veh" placeholder="TN 45 AB 1234"></div>'
-    +'<div class="form-group"><label>Feed Type</label><select id="is-type">'+getFeedTypeOpts('')+'</select></div>'
+    +'<div class="form-group"><label>Feed Type *</label>'+searchSelect({id:'is-type',options:ftOpts,placeholder:'Feed Type தேடுங்கள்...'})+'</div>'
     +'<div class="form-group"><label>Quantity (Bags)</label><input type="number" id="is-qty" placeholder="5" inputmode="numeric" oninput="calcIssue('+stock+')"></div>'
     +'<div class="form-group"><label>Rate (₹/Bag)</label><input type="number" id="is-rate" placeholder="470" inputmode="numeric"></div>'
     +'<div class="form-group"><label>Opening Balance</label><input type="number" id="is-open" value="'+stock+'" inputmode="numeric" oninput="calcIssue('+stock+')"></div>'
     +'<div class="form-group"><label>Closing Balance</label><input type="number" id="is-close" readonly style="opacity:.7"></div>'
-    +'<div class="btn-row"><button class="btn btn-danger btn-full" onclick="saveIssue(\''+cc+'\')">Issue Feed →</button></div>'
-    +'</div>'
+    +'<div class="btn-row"><button class="btn btn-danger btn-full" onclick="saveIssue(\''+cc+'\')">Issue Feed →</button></div></div>'
     +'<div class="card"><div class="card-title"><span class="ct-icon">📋</span>Issue History</div>'
     +(issues.length===0?'<div class="empty-state"><span class="empty-icon">📭</span>No issues yet</div>'
-      :'<div class="tbl-wrap"><table><thead><tr><th>Date</th><th>No.</th><th>Society</th><th>Bags</th><th>Balance</th></tr></thead><tbody>'+rows+'</tbody></table></div>')
+      :'<div class="tbl-wrap"><table><thead><tr><th>Date</th><th>No.</th><th>Society</th><th>Bags</th><th>Balance</th><th>Del</th></tr></thead><tbody>'+rows+'</tbody></table></div>')
     +'</div>';
 };
 
 PAGES['cc-vehicle'] = function(cc){
   var logs=DB.getVehicleLogs(cc);
-  var rows=logs.slice(0,12).map(function(l){
-    return '<tr><td>'+fmtDate(l.date)+'</td><td>'+badge(l.vehicle,'blue')+'</td><td>'+l.driver+'</td>'
-      +'<td>'+(l.damage==='No Damage'?badge('None','green'):badge(l.damage,'red'))+'</td></tr>';
+  var rows=logs.slice(0,15).map(function(l){
+    return'<tr><td>'+fmtDate(l.date)+'</td><td>'+badge(l.vehicle,'blue')+'</td><td>'+l.driver+'</td>'
+      +'<td>'+(l.damage==='No Damage'?badge('None','green'):badge(l.damage,'red'))+'</td>'
+      +'<td><button onclick="deleteVehicleLog(\''+cc+'\',\''+l.id+'\')" style="background:rgba(255,82,82,.12);border:1px solid rgba(255,82,82,.3);color:var(--red);padding:5px 9px;border-radius:7px;font-size:11px;cursor:pointer">🗑️</button></td></tr>';
   }).join('');
   return '<div class="page-title"><span class="pt-icon">🚛</span>Vehicle Log</div>'
     +'<div class="card"><div class="card-title"><span class="ct-icon">➕</span>New Trip</div>'
@@ -1623,136 +2177,123 @@ PAGES['cc-vehicle'] = function(cc){
     +'<div class="form-group"><label>Trip Type</label><select id="vl-type"><option>Dairy to CC (Receipt)</option><option>CC to Society (Issue)</option></select></div>'
     +'<div class="form-group"><label>Damage</label><select id="vl-dmg"><option>No Damage</option><option>Bag Damage</option><option>Vehicle Breakdown</option><option>Short Delivery</option></select></div>'
     +'<div class="form-group"><label>Damage Bags</label><input type="number" id="vl-dmgbags" value="0" inputmode="numeric"></div>'
-    +'<div class="form-group"><label>Remarks</label><input type="text" id="vl-remarks" placeholder="Trip notes..."></div>'
-    +'<div class="btn-row"><button class="btn btn-primary btn-full" onclick="saveVehicleLog(\''+cc+'\')">💾 Save Log</button></div>'
-    +'</div>'
+    +'<div class="form-group"><label>Remarks</label><input type="text" id="vl-remarks" placeholder="Notes..."></div>'
+    +'<div class="btn-row"><button class="btn btn-primary btn-full" onclick="saveVehicleLog(\''+cc+'\')">💾 Save Log</button></div></div>'
     +'<div class="card"><div class="card-title"><span class="ct-icon">📋</span>Trip History</div>'
     +(logs.length===0?'<div class="empty-state"><span class="empty-icon">🚛</span>No trips logged</div>'
-      :'<div class="tbl-wrap"><table><thead><tr><th>Date</th><th>Vehicle</th><th>Driver</th><th>Damage</th></tr></thead><tbody>'+rows+'</tbody></table></div>')
+      :'<div class="tbl-wrap"><table><thead><tr><th>Date</th><th>Vehicle</th><th>Driver</th><th>Damage</th><th>Del</th></tr></thead><tbody>'+rows+'</tbody></table></div>')
     +'</div>';
 };
 
 PAGES['cc-report'] = function(cc){
-  var receipts=DB.getCCReceipts(cc);
-  var issues=DB.getCCIssues(cc);
-  var stock=DB.getCCStock(cc);
-  var bal=DB.getCCBalance(cc);
+  var receipts=DB.getCCReceipts(cc), issues=DB.getCCIssues(cc);
+  var stock=DB.getCCStock(cc), bal=DB.getCCBalance(cc);
   var dmg=receipts.reduce(function(s,r){return s+num(r.damage);},0);
   var totalR=receipts.reduce(function(s,r){return s+num(r.net);},0);
   var totalI=issues.reduce(function(s,i){return s+num(i.qty);},0);
   var socMap={};
-  issues.forEach(function(i){
-    if(!socMap[i.socNo]) socMap[i.socNo]={no:i.socNo,name:i.socName,total:0,last:''};
-    socMap[i.socNo].total+=num(i.qty);
-    if(!socMap[i.socNo].last||i.date>socMap[i.socNo].last) socMap[i.socNo].last=i.date;
-  });
-  var ccName=(getCCList().find(function(c){return c.id===cc;})||{}).name||cc;
+  issues.forEach(function(i){ if(!socMap[i.socNo]) socMap[i.socNo]={no:i.socNo,name:i.socName,total:0,last:''}; socMap[i.socNo].total+=num(i.qty); if(!socMap[i.socNo].last||i.date>socMap[i.socNo].last) socMap[i.socNo].last=i.date; });
   return '<div class="page-title"><span class="pt-icon">📈</span>Report</div>'
     +'<div class="stat-grid">'
-    +'<div class="stat-card gold"><div class="stat-lbl">Received</div><div class="stat-val">'+totalR+'</div><div class="stat-sub">Bags</div></div>'
-    +'<div class="stat-card"><div class="stat-lbl">Issued</div><div class="stat-val amber">'+totalI+'</div><div class="stat-sub">Bags</div></div>'
-    +'<div class="stat-card"><div class="stat-lbl">Damage</div><div class="stat-val red">'+dmg+'</div><div class="stat-sub">Bags</div></div>'
-    +'<div class="stat-card gold"><div class="stat-lbl">Balance</div><div class="stat-val gold">'+stock+'</div><div class="stat-sub">Bags | ₹'+fmt(bal)+'</div></div>'
+    +'<div class="stat-card gold"><div class="stat-lbl">Received</div><div class="stat-val">'+totalR+'</div></div>'
+    +'<div class="stat-card"><div class="stat-lbl">Issued</div><div class="stat-val amber">'+totalI+'</div></div>'
+    +'<div class="stat-card"><div class="stat-lbl">Damage</div><div class="stat-val red">'+dmg+'</div></div>'
+    +'<div class="stat-card gold"><div class="stat-lbl">Balance</div><div class="stat-val gold">'+stock+'</div><div class="stat-sub">₹'+fmt(bal)+'</div></div>'
     +'</div>'
     +'<div class="card"><div class="card-title"><span class="ct-icon">🏘️</span>Society Summary</div>'
     +(Object.keys(socMap).length===0?'<div class="empty-state"><span class="empty-icon">📭</span>No issues yet</div>'
       :'<div class="tbl-wrap"><table><thead><tr><th>No.</th><th>Society</th><th>Bags</th><th>Last</th></tr></thead><tbody>'
-      +Object.values(socMap).map(function(s){return '<tr><td>'+badge(s.no,'blue')+'</td><td>'+s.name+'</td><td>'+s.total+'</td><td>'+fmtDate(s.last)+'</td></tr>';}).join('')
-      +'</tbody></table></div>')
-    +'</div>';
+      +Object.values(socMap).map(function(s){return'<tr><td>'+badge(s.no,'blue')+'</td><td>'+s.name+'</td><td>'+s.total+'</td><td>'+fmtDate(s.last)+'</td></tr>';}).join('')
+      +'</tbody></table></div>')+'</div>';
 };
 
-// ==================== FORM ACTIONS ====================
-function calcPurchase(){
-  var q=num(v('p-qty')),r=num(v('p-rate'));
-  var t=document.getElementById('p-total'); if(t) t.value=q*r||'';
-}
+// ==================== FORM SAVES ====================
+function calcPurchase(){ var q=num(v('p-qty')),r=num(v('p-rate')),t=document.getElementById('p-total'); if(t) t.value=q*r||''; }
 function savePurchase(){
-  var date=v('p-date'),sel=document.getElementById('p-vendor');
-  if(!sel||!sel.value){showToast('Vendor select செய்யுங்கள்','error');return;}
-  var vendorName=sel.options[sel.selectedIndex].dataset.name||sel.options[sel.selectedIndex].text;
-  var feedType=v('p-type'),qty=num(v('p-qty')),rate=num(v('p-rate')),invoice=v('p-inv');
+  var date=v('p-date'), vendorId=getSSValue('p-vendor'), vendorName=getSSLabel('p-vendor');
+  var feedType=getSSValue('p-type')||getSSLabel('p-type');
+  var qty=num(v('p-qty')), rate=num(v('p-rate')), invoice=v('p-inv');
+  if(!vendorId&&!vendorName){showToast('Vendor select செய்யுங்கள்','error');return;}
+  if(!feedType){showToast('Feed Type select செய்யுங்கள்','error');return;}
   if(!qty||!rate){showToast('Qty & Rate உள்ளிடவும்','error');return;}
-  DB.addPurchase({date:date,vendorId:sel.value,vendorName:vendorName,feedType:feedType,qty:qty,rate:rate,total:qty*rate,invoice:invoice});
-  showToast('Purchase saved! ₹'+fmt(qty*rate),'success');
+  if(_editState.purchase){
+    var list=DB.getPurchases(), i=list.findIndex(function(x){return x.id===_editState.purchase;});
+    if(i>=0) list[i]=Object.assign(list[i],{date:date,vendorId:vendorId,vendorName:vendorName,feedType:feedType,qty:qty,rate:rate,total:qty*rate,invoice:invoice});
+    DB._set('purchases',list); _editState.purchase=null; showToast('Purchase updated!','success');
+  } else {
+    DB.addPurchase({date:date,vendorId:vendorId,vendorName:vendorName,feedType:feedType,qty:qty,rate:rate,total:qty*rate,invoice:invoice});
+    showToast('Purchase saved! ₹'+fmt(qty*rate),'success');
+  }
   showPage('d-purchase');
 }
 
-function calcAllotment(){
-  var q=num(v('al-qty')),r=num(v('al-rate'));
-  var t=document.getElementById('al-total'); if(t) t.value=q*r||'';
-}
+function calcAllotment(){ var q=num(v('al-qty')),r=num(v('al-rate')),t=document.getElementById('al-total'); if(t) t.value=q*r||''; }
 function saveAllotment(){
-  var date=v('al-date'),cc=v('al-cc');
+  var date=v('al-date'), cc=getSSValue('al-cc'), ccName=getSSLabel('al-cc');
+  var feedType=getSSValue('al-type')||getSSLabel('al-type');
+  var qty=num(v('al-qty')), rate=num(v('al-rate'));
+  var vehicle=v('al-veh2')||getSSValue('al-veh')||getSSLabel('al-veh');
   if(!cc){showToast('CC select செய்யுங்கள்','error');return;}
-  var ccName=(getCCList().find(function(c){return c.id===cc;})||{}).name||cc;
-  var feedType=v('al-type'),qty=num(v('al-qty')),rate=num(v('al-rate'));
-  var vehicle=v('al-veh2')||v('al-veh').split(' - ')[0];
+  if(!feedType){showToast('Feed Type select செய்யுங்கள்','error');return;}
   if(!qty||!rate||!vehicle){showToast('Qty, Rate, Vehicle தேவை','error');return;}
-  DB.addAllotment({date:date,cc:cc,ccName:ccName,feedType:feedType,qty:qty,rate:rate,total:qty*rate,vehicle:vehicle});
-  showToast(qty+' bags → '+ccName,'success');
+  if(_editState.allotment){
+    var list=DB.getAllotments(), i=list.findIndex(function(x){return x.id===_editState.allotment;});
+    if(i>=0) list[i]=Object.assign(list[i],{date:date,cc:cc,ccName:ccName,feedType:feedType,qty:qty,rate:rate,total:qty*rate,vehicle:vehicle});
+    DB._set('cc_allotments',list); _editState.allotment=null; showToast('Dispatch updated!','success');
+  } else {
+    DB.addAllotment({date:date,cc:cc,ccName:ccName,feedType:feedType,qty:qty,rate:rate,total:qty*rate,vehicle:vehicle});
+    showToast(qty+' bags → '+ccName,'success');
+  }
   showPage('d-dispatch');
 }
 
-function calcReceipt(){
-  var recv=num(v('rc-recv')),dmg=num(v('rc-dmg'));
-  var n=document.getElementById('rc-net'); if(n) n.value=Math.max(0,recv-dmg)||'';
-}
+function calcReceipt(){ var recv=num(v('rc-recv')),dmg=num(v('rc-dmg')),n=document.getElementById('rc-net'); if(n) n.value=Math.max(0,recv-dmg)||''; }
 function saveReceipt(cc){
-  var date=v('rc-date'),vehicle=v('rc-veh'),feedType=v('rc-type');
-  var received=num(v('rc-recv')),damage=num(v('rc-dmg')),rate=num(v('rc-rate'));
+  var date=v('rc-date'), vehicle=v('rc-veh');
+  var feedType=getSSValue('rc-type')||getSSLabel('rc-type');
+  var received=num(v('rc-recv')), damage=num(v('rc-dmg')), rate=num(v('rc-rate'));
   if(!vehicle||!received||!rate){showToast('Vehicle, Qty, Rate தேவை','error');return;}
   DB.addCCReceipt(cc,{date:date,vehicle:vehicle,feedType:feedType,received:received,damage:damage,net:received-damage,rate:rate,remarks:v('rc-remarks')});
   showToast('Receipt saved! '+(received-damage)+' bags','success');
   showPage('cc-receive');
 }
 
-function fillSociety(){
-  var sel=document.getElementById('is-soc');
-  if(!sel) return;
-  var opt=sel.options[sel.selectedIndex];
-  var no=document.getElementById('is-socno');
-  if(no&&opt) no.value=opt.dataset.no||'';
-}
-function calcIssue(stock){
-  var open=num(v('is-open'))||stock;
-  var qty=num(v('is-qty'));
-  var c=document.getElementById('is-close'); if(c) c.value=Math.max(0,open-qty)||'';
-}
+// Society SS callback
+window['onSS_is-soc'] = function(value, label, extra) {
+  var parts=extra.split('|');
+  var no=document.getElementById('is-socno'); if(no) no.value=parts[0]||'';
+};
+function calcIssue(stock){ var open=num(v('is-open'))||stock, qty=num(v('is-qty')), c=document.getElementById('is-close'); if(c) c.value=Math.max(0,open-qty)||''; }
 function saveIssue(cc){
-  var date=v('is-date'),sel=document.getElementById('is-soc');
-  if(!sel||!sel.value){showToast('Society select செய்யுங்கள்','error');return;}
-  var opt=sel.options[sel.selectedIndex];
-  var socNo=document.getElementById('is-socno').value||opt.dataset.no||'';
-  var socName=opt.text.split(' — ').slice(1).join(' ')||opt.text;
-  var vehicle=v('is-veh'),feedType=v('is-type');
-  var qty=num(v('is-qty')),rate=num(v('is-rate')),opening=num(v('is-open')),closing=num(v('is-close'));
+  var date=v('is-date'), socId=getSSValue('is-soc'), socLabel=getSSLabel('is-soc');
+  var socNo=v('is-socno'), parts=socLabel.split(' — ');
+  var socName=parts.length>1?parts.slice(1).join(' — '):socLabel;
+  var vehicle=v('is-veh');
+  var feedType=getSSValue('is-type')||getSSLabel('is-type');
+  var qty=num(v('is-qty')), rate=num(v('is-rate')), opening=num(v('is-open')), closing=num(v('is-close'));
+  if(!socId){showToast('Society select செய்யுங்கள்','error');return;}
   if(!vehicle||!qty||!rate){showToast('Vehicle, Qty, Rate தேவை','error');return;}
   var stock=DB.getCCStock(cc);
-  if(qty>stock){showToast('Stock insufficient! '+stock+' bags மட்டும் இருக்கு','error');return;}
+  if(qty>stock){showToast('Stock insufficient! '+stock+' bags மட்டும்','error');return;}
   DB.addCCIssue(cc,{date:date,socNo:socNo,socName:socName,vehicle:vehicle,feedType:feedType,qty:qty,rate:rate,opening:opening,closing:closing});
   showToast(qty+' bags → '+socName,'success');
   showPage('cc-issue');
 }
-
 function saveVehicleLog(cc){
-  var date=v('vl-date'),vehicle=v('vl-veh'),driver=v('vl-driver');
+  var date=v('vl-date'), vehicle=v('vl-veh'), driver=v('vl-driver');
   if(!vehicle){showToast('Vehicle No. தேவை','error');return;}
   DB.addVehicleLog(cc,{date:date,vehicle:vehicle,driver:driver,type:v('vl-type'),damage:v('vl-dmg'),damageBags:num(v('vl-dmgbags')),remarks:v('vl-remarks')});
-  showToast('Trip logged!','success');
-  showPage('cc-vehicle');
+  showToast('Trip logged!','success'); showPage('cc-vehicle');
 }
-
-function generateMobileReport(){
-  var from=v('rpt-from'),to=v('rpt-to'),type=v('rpt-type');
-  var out=document.getElementById('rpt-out');
+function generateReport(){
+  var from=v('rpt-from'), to=v('rpt-to'), type=v('rpt-type'), out=document.getElementById('rpt-out');
   if(!out) return;
   var purchases=DB.filterByDate(DB.getPurchases(),from,to);
   var allotments=DB.filterByDate(DB.getAllotments(),from,to);
   var totalP=purchases.reduce(function(s,p){return s+num(p.total);},0);
   var totalQ=purchases.reduce(function(s,p){return s+num(p.qty);},0);
   var totalA=allotments.reduce(function(s,a){return s+num(a.qty);},0);
-  out.innerHTML='<div class="card"><div class="card-title">📊 Report</div>'
+  out.innerHTML='<div class="card"><div class="card-title">📊 Report Result</div>'
     +'<div class="stat-grid">'
     +'<div class="stat-card gold"><div class="stat-lbl">Purchased</div><div class="stat-val">'+totalQ+'</div><div class="stat-sub">Bags</div></div>'
     +'<div class="stat-card"><div class="stat-lbl">Spent</div><div class="stat-val amber">₹'+fmt(totalP)+'</div></div>'
@@ -1760,106 +2301,87 @@ function generateMobileReport(){
     +'<div class="stat-card gold"><div class="stat-lbl">Balance</div><div class="stat-val gold">₹'+fmt(DB.getDairyBalance())+'</div></div>'
     +'</div></div>';
 }
-
 function saveAlertSettings(){
   DB.saveAlertSettings({lowStock:num(v('as-low')),warnStock:num(v('as-warn')),phone:v('as-phone'),via:'SMS'});
   showToast('Alert settings saved!','success');
+}
+function refreshCurrentPage(){
+  var app=document.getElementById('app');
+  if(currentPage&&currentRole&&app&&app.classList.contains('active')) showPage(currentPage);
 }
 
 
 function startApp(){
   var saved=localStorage.getItem('gkd_script_url');
   if(saved){ SCRIPT_URL=saved; connectSheets(); }
-  else { showSetup(); }
+  else{ document.getElementById('loader').style.display='none'; showSetup(); }
 }
-function showSetup(){
-  document.getElementById('loader').style.display='none';
-  document.getElementById('setup-screen').style.display='flex';
-}
+function showSetup(){ document.getElementById('setup-screen').style.display='flex'; }
 function saveScriptUrl(){
   var url=document.getElementById('setup-url').value.trim();
   if(!url||!url.includes('script.google.com')){showToast('Valid Apps Script URL paste செய்யுங்கள்','error');return;}
   SCRIPT_URL=url; localStorage.setItem('gkd_script_url',url); connectSheets();
 }
-function useOfflineMode(){
-  localStorage.setItem('gkd_use_local','1');
-  activateLocalMode();
-}
+function useOfflineMode(){ localStorage.setItem('gkd_use_local','1'); activateLocalMode(); }
 function activateLocalMode(){
-  SHEETS_READY=true;
-  DB._get=function(key){try{return JSON.parse(localStorage.getItem('gkd_'+key)||'null');}catch(e){return null;}};
-  DB._set=function(key,val){localStorage.setItem('gkd_'+key,JSON.stringify(val));};
-  DB.clearAll=function(){Object.keys(localStorage).filter(function(k){return k.startsWith('gkd_');}).forEach(function(k){localStorage.removeItem(k);});};
-  var arrKeys=['vendors','purchases','cc_allotments','societies','vehicles','feed_types','drivers','cc_centers'];
-  arrKeys.forEach(function(k){if(!localStorage.getItem('gkd_'+k))localStorage.setItem('gkd_'+k,'[]');});
-  var objKeys=['cc_receipts','cc_issues','vehicle_logs'];
-  objKeys.forEach(function(k){if(!localStorage.getItem('gkd_'+k))localStorage.setItem('gkd_'+k,JSON.stringify({cc1:[],cc2:[],cc3:[],cc4:[],cc5:[]}));});
-  if(!localStorage.getItem('gkd_dairy_balance'))localStorage.setItem('gkd_dairy_balance','0');
-  if(!localStorage.getItem('gkd_alert_settings'))localStorage.setItem('gkd_alert_settings',JSON.stringify({lowStock:15,warnStock:25,phone:'',via:'SMS'}));
-  _cache.Vendors=DB._get('vendors')||[];
-  _cache.Purchases=DB._get('purchases')||[];
-  _cache.CC_Allotments=DB._get('cc_allotments')||[];
-  _cache.Societies=DB._get('societies')||[];
-  _cache.Vehicles=DB._get('vehicles')||[];
-  _cache.Feed_Types=DB._get('feed_types')||[];
-  _cache.Drivers=DB._get('drivers')||[];
-  _cache.CC_Centers=DB._get('cc_centers')||[];
-  _cache.CC_Receipts=[];_cache.CC_Issues=[];_cache.Vehicle_Logs=[];
-  _cache.Settings={dairy_balance:localStorage.getItem('gkd_dairy_balance')||'0'};
-  var as=DB._get('alert_settings')||{};
-  if(as.lowStock) _cache.Settings.lowStock=String(as.lowStock);
-  if(as.warnStock) _cache.Settings.warnStock=String(as.warnStock);
+  SHEETS_READY=false;
+  ['vendors','purchases','cc_allotments','societies','vehicles','feed_types','drivers','cc_centers'].forEach(function(k){
+    if(!localStorage.getItem('gkd_'+k)) lsSet(k,[]);
+  });
+  ['cc_receipts','cc_issues','vehicle_logs'].forEach(function(k){
+    if(!localStorage.getItem('gkd_'+k)) lsSet(k,{});
+  });
+  if(!localStorage.getItem('gkd_dairy_balance')) lsSet('dairy_balance',0);
+  if(!localStorage.getItem('gkd_alert_settings')) lsSet('alert_settings',{lowStock:15,warnStock:25,phone:'',via:'SMS'});
   document.getElementById('setup-screen').style.display='none';
   document.getElementById('loader').style.display='none';
   document.getElementById('login-screen').style.display='flex';
-  populateLoginDropdown();
-  showToast('Offline mode (device only)','info');
+  showToast('Offline mode — data device-ல் save ஆகும்','info');
 }
 function connectSheets(){
   document.getElementById('setup-screen').style.display='none';
-  var loader=document.getElementById('loader');
-  loader.style.display='flex';
+  var loader=document.getElementById('loader'); loader.style.display='flex';
   sheetsInit(
     function(){
+      SHEETS_READY=true;
       loader.style.display='none';
       document.getElementById('login-screen').style.display='flex';
-      populateLoginDropdown();
-      showToast('Google Sheets connected!','success');
+      showToast('Google Sheets connected! ☁️','success');
     },
     function(err){
       loader.style.display='none';
       localStorage.removeItem('gkd_script_url');
+      SHEETS_READY=false;
       document.getElementById('setup-screen').style.display='flex';
-      showToast('Connection failed. URL check செய்யுங்கள்','error');
+      showToast('Sheets failed. Offline mode use செய்யலாம்','error');
     }
   );
 }
-function reconfigureSheets(){
-  localStorage.removeItem('gkd_script_url');
-  localStorage.removeItem('gkd_use_local');
-  location.reload();
-}
+function reconfigureSheets(){ localStorage.removeItem('gkd_script_url'); localStorage.removeItem('gkd_use_local'); location.reload(); }
 function clearAllData(){
   if(!confirm('எல்லா data-வும் delete ஆகும்?')) return;
-  if(!confirm('Sure?')) return;
+  if(!confirm('Sure? Masters + transactions எல்லாமே போகும்!')) return;
   DB.clearAll();
-  Object.keys(_cache).forEach(function(k){_cache[k]=Array.isArray(_cache[k])?[]:{};});
   showToast('Data cleared!','success');
   setTimeout(function(){doLogout();},500);
 }
 function refreshCurrentPage(){
-  if(currentPage&&currentRole) showPage(currentPage);
+  var appEl=document.getElementById('app');
+  if(currentPage&&currentRole&&appEl&&appEl.classList.contains('active')) showPage(currentPage);
 }
 window.addEventListener('DOMContentLoaded',function(){
+  applyTheme(localStorage.getItem('gkd_theme')||'navy');
   if(localStorage.getItem('gkd_use_local')){ activateLocalMode(); return; }
   var saved=localStorage.getItem('gkd_script_url');
   if(saved){ SCRIPT_URL=saved; connectSheets(); }
   else{ document.getElementById('loader').style.display='none'; showSetup(); }
 });
 if('serviceWorker' in navigator){
-  window.addEventListener('load',function(){
-    navigator.serviceWorker.register('./sw.js').catch(function(){});
+  // Force update check on every load
+  navigator.serviceWorker.getRegistrations().then(function(regs){
+    regs.forEach(function(r){ r.update(); });
   });
+  window.addEventListener('load',function(){navigator.serviceWorker.register('./sw.js').catch(function(){});});
 }
 </script>
 </body>
